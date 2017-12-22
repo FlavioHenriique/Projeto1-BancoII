@@ -2,11 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>teste</title>
+        <title>Projeto 1</title>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+
     </body>
 </html>
+<?php
+    $con = pg_connect("host=localhost port=5432 user=postgres password='flavio22'"
+            . "db=")
+?>
