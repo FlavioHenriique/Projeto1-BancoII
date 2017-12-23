@@ -12,24 +12,15 @@
         <form method="post" >
             <table id="login">
                 <tr>
-                    <td>
-                        Email
-                    </td>
-                    <td>
-                        Senha
-                    </td>
+                    <td> Email</td>     
+                    <td>Senha</td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="text" name="email">
-                    </td>
-                    <td>
-                        <input type="password" name="senha">
-                    </td>
-                    <td>
-                        <input type="submit">
-                    </td>
+                    <td><input type="text" name="email"></td>
+                    <td><input type="password" name="senha"></td>
+                    <td> <input type="submit"></td>
                 </tr>
+                <tr><td><label id="autenticacao"></label></td></tr>
             </table>
            
         </form>
@@ -46,12 +37,14 @@ $con = pg_connect("host=localhost port=5432 user=postgres password='flavio22'"
 if (isset($_POST["email"]) && isset($_POST["senha"])){
     $email = $_POST["email"];
     $senha = $_POST["senha"];
-    $sql = "SELECT * FROM USUARIO WHERE email=$email AND senha=$senha";
+    $sql = "SELECT * FROM USUARIO WHERE email='$email' AND senha='$senha'";
     $result = pg_query($con,$sql);
-    if($row = pg_fetch_all($result)>0){
-        $nome = $row[]
-        echo "<script>alert('Bem vindo,');</script>";
+    $row = pg_fetch_array($result);
+    if($row>0){
+        echo "<script>alert('Bem vindo, ".$row["nome"]."!');</script>";
     }
+    else echo"<script>autenticacao.innerHTML='Usuário não encontrado';</script>"
+        . "<style>#autenticacao{color:red;}</style>";
     
 }
 
