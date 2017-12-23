@@ -10,29 +10,30 @@
                 <td width="50%"> <h1>Tela Inicial</h1></td>
                 <td>
                     <div id="login"><form method="post" tex-align="right">
-                        <table id="login">
-                            <tr>
-                                <td> Email</td>     
-                                <td>Senha</td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="email"></td>
-                                <td><input type="password" name="senha"></td>
-                                <td> <input type="submit" value="Entrar"></td>
-                            </tr>
-                            <tr><td><label id="autenticacao"></label></td></tr>
-                        </table>           
+                            <table id="login">
+                                <tr>
+                                    <td> Email</td>     
+                                    <td>Senha</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="email"></td>
+                                    <td><input type="password" name="senha"></td>
+                                    <td> <input type="submit" value="Entrar"></td>
+                                </tr>
+                                <tr><td><label id="autenticacao"></label></td></tr>
+                            </table>           
                         </form></div>
                 </td>
             </tr>
             <tr height="90%">
                 <td>  <div id="map"></div></td>
                 <td>
-                    <form><center>
+                    <form method="post"><center>
                             <h2>Cadastro de Usuário</h2>
-                            Nome <input type="text" name="cadNome"> <br><br>
+                            Nome <input type="text" name="cadNome"><br><br>
                             Email <input type="text" name="cadEmail"><br><br>
                             Senha <input type="password" name="cadSenha"><br><br>
+                            <label id="cadastro"></label><br><br>
                             <input type="submit" value="Cadastrar">
                         </center>
                     </form>
@@ -40,12 +41,7 @@
             </tr>
         </table>
         <br>
-
-
         <br><br>
-
-
-
     </body>
 </html>
 <?php
@@ -66,11 +62,22 @@ if (isset($_POST["email"]) && isset($_POST["senha"])) {
     }
 }
 
-    if (isset($_POST["cadEmail"]) && isset($_POST["cadNome"]) && 
-            isset($_POST["cadSenha"])){
-            
-        
-            }
+if (isset($_POST["cadEmail"]) && isset($_POST["cadNome"]) &&
+        isset($_POST["cadSenha"])) {
+
+    $sql = "SELECT email FROM Usuario WHERE email='" . $_POST['cadEmail'] . "'";
+    $result = pg_query($con, $sql);
+    if (pg_num_rows($result) > 0) {
+        echo "<script> cadastro.innerHTML='Este email já está sendo"
+        . " utilizado!';</script> <style>#cadastro{color:red;}</style>";
+    } else {
+        $cadastro = "INSERT INTO Usuario (nome,email,senha) VALUES('"
+                .$_POST["cadNome"]."','".$_POST["cadEmail"]."','".$_POST["cadSenha"]."')";
+        pg_exec($con, $cadastro);
+        echo "<script>cadastro.innerHTML='Usuário cadastrado com sucesso!';</script>"
+        . " <style>#cadastro{color:green;}</style>";
+    }
+}
 
 echo " <script>
       function initMap() {
