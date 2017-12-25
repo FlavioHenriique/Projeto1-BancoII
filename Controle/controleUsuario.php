@@ -1,10 +1,6 @@
 <?php
 
-function getConnection() {
-     $con = pg_connect("host=localhost port=5432 user=postgres password='flavio22'"
-            . "dbname=projetoI-BancoII") or die("erro na conexão com banco!");
-     return $con;
-}
+require_once 'conexao.php';
 
 function autenticar($email, $senha) {
 
@@ -13,7 +9,7 @@ function autenticar($email, $senha) {
     $result = pg_query($con, $sql);
     $row = pg_fetch_array($result);
     if ($row > 0) {
-        echo "<script>alert('Bem vindo, " . $row["nome"] . "!');</script>";
+        echo "<script>nomeUsuario.innerHTML='".$row["nome"]."';</script>";
     } else {
         echo"<script>autenticacao.innerHTML='Usuário não encontrado';</script>"
         . "<style>#autenticacao{color:red;}</style>";
@@ -43,14 +39,12 @@ function initMap() {
           zoom: 14
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
-
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-
             infoWindow.setPosition(pos);
             infoWindow.setContent('Você está aqui.');
             map.setCenter(pos);
@@ -61,7 +55,6 @@ function initMap() {
          handleLocationError(false, infoWindow, map.getCenter());
         }
       }
-
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?

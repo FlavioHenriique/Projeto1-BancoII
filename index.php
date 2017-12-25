@@ -3,17 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>Projeto 1</title>
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
         <table width="100%" height="80%" class="tabela"><tr bgcolor="#B0E0E6">
-                <td width="50%"> <h1>Tela Inicial</h1></td>
+                <td width="50%"> <h1>Tela Inicial</h1>
+                    <b> <label id="nomeUsuario"></label></b>
+                </td>
                 <td>
                     <div id="login"><form method="post" tex-align="right">
                             <table>
                                 <tr>
-                                    <td>Email</td>     
-                                    <td>Senha</td>
+                                    <td><b>Email</b></td>     
+                                    <td><b>Senha</b></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" name="email"></td>
@@ -45,7 +47,7 @@
     </body>
 </html>
 <?php
-require_once 'funcoes.php';
+require_once 'Controle/controleUsuario.php';
 
 
 if (isset($_POST["email"]) && isset($_POST["senha"])) {
@@ -68,5 +70,5 @@ if (isset($_POST["cadEmail"]) && isset($_POST["cadNome"]) &&
         . " utilizado!';</script> <style>#cadastro{color:red;}</style>";
     }
 }
-    initMap();
+initMap();
 ?>  

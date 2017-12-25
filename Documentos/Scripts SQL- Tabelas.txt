@@ -10,6 +10,8 @@ CREATE TABLE LOCALIDADE(
 	cidade varchar(50),
 	inicio varchar(5),
 	fim varchar(5),
+        latitude varchar(20),
+        longitude varchar(20),
 	codigo int primary key,
 	usuario varchar(50),
 	foreign key (usuario)references usuario(email));

@@ -17,3 +17,10 @@ html, body {
     font-family: verdana;
     font-size:90%;
 }
+
+#nomeUsuario{
+    font-family: verdana;
+    font-size:150%;
+    color:white;
+    
+}
