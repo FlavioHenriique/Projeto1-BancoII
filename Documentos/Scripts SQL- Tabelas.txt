@@ -12,7 +12,7 @@ CREATE TABLE LOCALIDADE(
 	fim varchar(5),
         latitude varchar(20),
         longitude varchar(20),
-	codigo int primary key,
+	codigo serial primary key,
 	usuario varchar(50),
 	foreign key (usuario)references usuario(email));
 

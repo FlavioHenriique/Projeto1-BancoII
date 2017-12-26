@@ -1,0 +1,42 @@
+<?php
+
+function geocodificar($lat, $long) {
+    $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng={$lat},{$long}&sensor=false";
+    $content = @file_get_contents($url);
+    $localizacao = array();
+
+    if ($content) {
+        $result = json_decode(file_get_contents($url), true);
+
+        if ($result['status'] === 'OK') {
+            foreach ($result['results'][0]['address_components'] as $component) {
+                switch ($component['types']) {
+                    case in_array('administrative_area_level_2', $component['types']):
+                        $localizacao['administrative_area_level_2'] = $component['long_name'];
+                        break;
+                    case in_array('sublocality_level_1', $component['types']):
+                        $localizacao['sublocality_level_1'] = $component['long_name'];
+                        break;
+                    case in_array('route', $component['types']):
+                        $localizacao['route'] = $component['long_name'];
+                        break;
+                }
+            }
+        }
+    }
+
+    return $localizacao;
+}
+
+function salvarLocalidade($latitude, $longitude, $nome, $entrada, $saida, $user,
+        $rua,$bairro,$cidade){
+    require_once 'conexao.php';
+    $con = getConnection();
+    $sql = "INSERT INTO localidade(nome,rua,bairro,cidade,inicio,fim,latitude,"
+            . "longitude,usuario,codigo)"
+            . " VALUES('$nome','$rua','$bairro','$cidade','$entrada','$saida',$latitude,"
+            . "$longitude,'$user',12)";
+
+    pg_exec($con, $sql);
+    echo "<script>alert('Localidade Cadastrada com sucesso!');</script>";
+}

@@ -6,7 +6,6 @@
         <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
-       
         <table width="100%" height="80%" class="tabela"><tr bgcolor="#B0E0E6">
                 <td width="50%"> <h1>Tela Inicial</h1>
                     <b> <label id="nomeUsuario"></label></b>
@@ -32,7 +31,8 @@
                 <td>  <div id="map"></div><br><br>
             <center>
                 <form method="post" action="Localidade.php">
-                <button id="btCadastrar">CADASTRAR LOCALIDADE</button>
+                    <input type="hidden" name="user" id="user"><br>
+                    <button id="btCadastrar">CADASTRAR LOCALIDADE</button>
                 </form>
             </center>
         </td>

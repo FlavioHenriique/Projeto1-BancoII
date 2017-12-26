@@ -9,7 +9,8 @@ function autenticar($email, $senha) {
     $result = pg_query($con, $sql);
     $row = pg_fetch_array($result);
     if ($row > 0) {
-        echo "<script>nomeUsuario.innerHTML='" . $row["nome"] . "';</script>";
+        echo "<script>nomeUsuario.innerHTML='" . $row["nome"] . "';</script>"
+                . "<script>user.value='".$email."'</script>";
         echo "<style>#btCadastrar{visibility: visible;}</style>";
     } else {
         echo"<script>autenticacao.innerHTML='Usuário não encontrado!';</script>"
