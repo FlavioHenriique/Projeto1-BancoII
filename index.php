@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -28,10 +27,21 @@
                 </td>
             </tr>
             <tr height="90%">
-                <td>  <div id="map"></div><br><br>
+                <td>
+                    <form method="post">
+                        <input type="text" name="buscaNome" placeholder="Nome da localidade">
+                        <input type="submit" value="Buscar">
+                    </form>
+                    <form method="post">
+                        <input type="text" name="buscaEndereco" placeholder="Endereço">
+                        <input type="submit" value="Buscar">
+                    </form>
+                    <label id="resultadoBusca"></label>
+                    <div id="map"></div><br><br>
             <center>
                 <form method="post" action="Localidade.php">
-                    <input type="hidden" name="user" id="user"><br>
+                    <input type="hidden" name="user" id="user">
+                    <input type="hidden" name="userPass" id="userPass"><br>
                     <button id="btCadastrar">CADASTRAR LOCALIDADE</button>
                 </form>
             </center>
@@ -57,21 +67,30 @@
 require_once 'Controle/controleUsuario.php';
 require_once 'Controle/mapa.php';
 
+if (isset($_POST["buscaNome"])) {
 
-if (isset($_POST["email"]) && isset($_POST["senha"])) {
+    require_once 'Controle/ControleLocalidade.php';
+    buscarNome($_POST["buscaNome"]);
+    
+} else if (isset($_POST["email"]) && isset($_POST["senha"])) {
+
     $email = $_POST["email"];
     $senha = $_POST["senha"];
     autenticar($email, $senha);
-}
-
-if (isset($_POST["cadEmail"]) && isset($_POST["cadNome"]) &&
+    initMap();
+    
+} else if (isset($_POST["cadEmail"]) && isset($_POST["cadNome"]) &&
         isset($_POST["cadSenha"])) {
 
     $cadEmail = $_POST["cadEmail"];
     $cadNome = $_POST["cadNome"];
     $cadSenha = $_POST["cadSenha"];
 
-    echo "<script>cadastro.innerHTML='" . cadastrarUsuario($cadEmail, $cadNome, $cadSenha) . "';</script>";
+    echo "<script>cadastro.innerHTML='" . 
+            cadastrarUsuario($cadEmail, $cadNome, $cadSenha) . "';</script>";
+    
+            initMap();
+} else {
+    initMap();
 }
-initMap();
 ?>  

@@ -1,20 +1,40 @@
 <?php
 
 function initMap() {
-    echo " <script>
-        
+    require_once 'conexao.php';
+    $con = getConnection();
+    $sql = "SELECT latitude,longitude,nome,codigo FROM localidade";
+    $result = pg_query($con, $sql);
+
+    echo " <script>        
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 14
         });
+       
         var infoWindow = new google.maps.InfoWindow({map: map});
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
-            };
+            };";
+    while ($row = pg_fetch_array($result)) {
+        echo "var marker = new google.maps.Marker({
+      position: {lat: " . $row['latitude'] . ",lng: " . $row['longitude'] . "},
+      map: map, 
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+     title: '" . $row["nome"] . "'
+});
+            
+           google.maps.event.addListener(marker, 'click', function(event){
+           
+});
+";
+    }
+    echo " 
             infoWindow.setPosition(pos);
             infoWindow.setContent('Você está aqui.');
             map.setCenter(pos);
@@ -25,6 +45,8 @@ function initMap() {
         } else {
          handleLocationError(false, infoWindow, map.getCenter());
         }
+
+
       }
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -32,12 +54,19 @@ function initMap() {
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       }
+    
     </script>
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCHoafMtF7Sv5XiUhhTpnqv82PaGuFM3u4&callback=initMap'
     async defer></script>";
 }
 
 function addLocalidade() {
+
+    require_once 'conexao.php';
+    $con = getConnection();
+    $sql = "SELECT latitude,longitude,nome FROM localidade";
+    $result = pg_query($con, $sql);
+
     echo " <script>   
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -50,9 +79,19 @@ function addLocalidade() {
             var pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
-            };
+            };";
+    while ($row = pg_fetch_array($result)) {
+        echo "var marker = new google.maps.Marker({
+      position: {lat: " . $row['latitude'] . ",lng: " . $row['longitude'] . "},
+      map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+     title: '" . $row["nome"] . "'
+});";
+    }
+    echo"
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Você está aqui.');
+            infoWindow.setContent('Você está aqui!');
             map.setCenter(pos);
             
           }, function() {
@@ -70,6 +109,8 @@ function addLocalidade() {
       var marker = new google.maps.Marker({
       position:  new google.maps.LatLng(lat, lng),
       map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
      title: 'marcador 1'
   });
     
@@ -88,4 +129,40 @@ function addLocalidade() {
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCHoafMtF7Sv5XiUhhTpnqv82PaGuFM3u4&callback=initMap'
     async defer></script>
 ";
+}
+
+function localizarNome($lat, $lng) {
+
+    require_once 'conexao.php';
+    $con = getConnection();
+    $sql = "SELECT latitude,longitude,nome FROM localidade";
+    $result = pg_query($con, $sql);
+
+    echo "<script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: $lat, lng: $lng},
+          zoom: 15
+        });";
+    while ($row = pg_fetch_array($result)) {
+        echo "var marker = new google.maps.Marker({
+      position: {lat: " . $row['latitude'] . ",lng: " . $row['longitude'] . "},
+      map: map, 
+    draggable: true,";
+        if ($row["latitude"] === $lat && $row["longitude"] === $lng) {
+            echo "animation: google.maps.Animation.BOUNCE,"
+            . "  title: '" . $row["nome"] . "'
+});";
+        } else {
+            echo"
+    animation: google.maps.Animation.DROP,
+     title: '" . $row["nome"] . "'
+});";
+        }
+    }
+    echo "}
+</script>
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCHoafMtF7Sv5XiUhhTpnqv82PaGuFM3u4&callback=initMap'
+async defer></script>";
 }

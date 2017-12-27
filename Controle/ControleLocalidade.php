@@ -30,13 +30,32 @@ function geocodificar($lat, $long) {
 
 function salvarLocalidade($latitude, $longitude, $nome, $entrada, $saida, $user,
         $rua,$bairro,$cidade){
-    require_once 'conexao.php';
+    require_once 'conexao.php'; 
     $con = getConnection();
+    
     $sql = "INSERT INTO localidade(nome,rua,bairro,cidade,inicio,fim,latitude,"
-            . "longitude,usuario,codigo)"
+            . "longitude,usuario)"
             . " VALUES('$nome','$rua','$bairro','$cidade','$entrada','$saida',$latitude,"
-            . "$longitude,'$user',12)";
-
+            . "$longitude,'$user')";
     pg_exec($con, $sql);
-    echo "<script>alert('Localidade Cadastrada com sucesso!');</script>";
+    echo "<script>alert('Localidade Cadastrada com sucesso!');"
+    . "</script>";
+}
+
+
+function buscarNome($nome){
+    
+    require_once 'conexao.php';
+    require_once 'ControleLocalidade.php';
+    require_once 'mapa.php';
+    
+    $con = getConnection();
+    $sql = "SELECT latitude,longitude FROM localidade WHERE nome ilike '$nome'";
+    $result = pg_query($con,$sql);
+    
+    $row= pg_fetch_array($result);
+    $lat = $row["latitude"];
+    $lng = $row["longitude"];
+    
+    localizarNome($lat, $lng);
 }
