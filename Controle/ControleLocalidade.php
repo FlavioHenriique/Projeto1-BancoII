@@ -59,3 +59,12 @@ function buscarNome($nome){
     
     localizarNome($lat, $lng);
 }
+
+function paginaLocalidade($lat,$lng){
+    
+    require_once 'conexao.php';
+    $con = getConnection();
+    $sql = "SELECT * FROM LOCALIDADE WHERE latitude='$lat' AND longitude='$lng'";
+     $result = pg_query($con,$sql);
+     return $result;
+}

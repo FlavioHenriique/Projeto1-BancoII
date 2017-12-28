@@ -29,24 +29,24 @@ function initMap() {
      title: '" . $row["nome"] . "'
 });
             
-           google.maps.event.addListener(marker, 'click', function(event){
+           marker.addListener('click', function(event){
+            latMarker.value=  event.latLng.lat().toFixed(6);
+           lngMarker.value =  event.latLng.lng().toFixed(6);
            
+           document.avaliacao.submit();
 });
 ";
     }
     echo " 
             infoWindow.setPosition(pos);
             infoWindow.setContent('Você está aqui.');
-            map.setCenter(pos);
-            
+            map.setCenter(pos); 
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
         } else {
          handleLocationError(false, infoWindow, map.getCenter());
         }
-
-
       }
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -86,8 +86,7 @@ function addLocalidade() {
       map: map,
     draggable: true,
     animation: google.maps.Animation.DROP,
-     title: '" . $row["nome"] . "'
-});";
+     title: '" . $row["nome"] . "'});";
     }
     echo"
             infoWindow.setPosition(pos);

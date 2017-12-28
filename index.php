@@ -28,14 +28,32 @@
             </tr>
             <tr height="90%">
                 <td>
-                    <form method="post">
-                        <input type="text" name="buscaNome" placeholder="Nome da localidade">
-                        <input type="submit" value="Buscar">
-                    </form>
-                    <form method="post">
-                        <input type="text" name="buscaEndereco" placeholder="Endereço">
-                        <input type="submit" value="Buscar">
-                    </form>
+                    <table>
+                        <tr>
+                            <td>
+                                <form method="post">
+                                    <input type="text" name="buscaNome" placeholder="Nome da localidade">
+                                    <input type="submit" value="Buscar">
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post">
+                                    <input type="text" name="buscaEndereco" placeholder="Endereço">
+                                    <input type="submit" value="Buscar">
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form method="post" name="avaliacao" id="avaliacao" action="Avaliacao.php">
+                                    <input type="hidden" name="latMarker" id="latMarker">
+                                    <input type="hidden" name="lngMarker" id="lngMarker">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+
+
                     <label id="resultadoBusca"></label>
                     <div id="map"></div><br><br>
             <center>
@@ -71,14 +89,12 @@ if (isset($_POST["buscaNome"])) {
 
     require_once 'Controle/ControleLocalidade.php';
     buscarNome($_POST["buscaNome"]);
-    
 } else if (isset($_POST["email"]) && isset($_POST["senha"])) {
 
     $email = $_POST["email"];
     $senha = $_POST["senha"];
     autenticar($email, $senha);
     initMap();
-    
 } else if (isset($_POST["cadEmail"]) && isset($_POST["cadNome"]) &&
         isset($_POST["cadSenha"])) {
 
@@ -86,10 +102,10 @@ if (isset($_POST["buscaNome"])) {
     $cadNome = $_POST["cadNome"];
     $cadSenha = $_POST["cadSenha"];
 
-    echo "<script>cadastro.innerHTML='" . 
-            cadastrarUsuario($cadEmail, $cadNome, $cadSenha) . "';</script>";
-    
-            initMap();
+    echo "<script>cadastro.innerHTML='" .
+    cadastrarUsuario($cadEmail, $cadNome, $cadSenha) . "';</script>";
+
+    initMap();
 } else {
     initMap();
 }
