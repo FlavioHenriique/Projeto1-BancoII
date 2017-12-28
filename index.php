@@ -45,9 +45,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <form method="post" name="avaliacao" id="avaliacao" action="Avaliacao.php">
+                                <form method="post" name="avaliacao" id="avaliacao"
+                                      action="Avaliacao.php">
                                     <input type="hidden" name="latMarker" id="latMarker">
                                     <input type="hidden" name="lngMarker" id="lngMarker">
+                                    <input type="hidden" name="avaliador" id="avaliador">
                                 </form>
                             </td>
                         </tr>

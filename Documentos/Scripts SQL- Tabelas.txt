@@ -17,7 +17,7 @@ CREATE TABLE LOCALIDADE(
 	foreign key (usuario)references usuario(email));
 
 CREATE TABLE AVALIACAO(
-	Codigo int primary key,
+	Codigo serial primary key,
 	emailUsuario varchar(50),
 	 foreign key(emailusuario) references usuario(email),
 	codigolocalidade int,

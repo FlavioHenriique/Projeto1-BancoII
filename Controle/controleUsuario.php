@@ -11,7 +11,8 @@ function autenticar($email, $senha) {
     if ($row > 0) {
         echo "<script>nomeUsuario.innerHTML='" . $row["nome"] . "';</script>"
                 . "<script>user.value='".$email."';"
-                . "userPass.value='".$senha."'</script>";
+                . "userPass.value='".$senha."';"
+                . "avaliador.value='".$email."';</script>";
         echo "<style>#btCadastrar{visibility: visible;}</style>";
     } else {
         echo"<script>autenticacao.innerHTML='Usuário não encontrado!';</script>"
