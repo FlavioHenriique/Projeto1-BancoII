@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Informações sobre a localidade</title>
+        <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
 
@@ -17,12 +18,12 @@
             <center>
                 
                 <form method="post">
-                    <input type="text" id="codigo" name="codigo"><br>
-                    <input type="text" name="email" id="email"><br>
-                    <h1>Avaliação</h1><br>
-                    <input type="number" name="nota" min="0" max="10"><br><br>
-                    <textarea name="comentario"></textarea><br><br>
-                    <input type="submit" value="Avaliar">
+                    <input type="hidden" id="codigo" name="codigo" ><br>
+                    <input type="hidden" name="email" id="email"><br>
+                    <h1 id="avaliar">Avaliação</h1><br>
+                    <input type="number" name="nota" min="0" max="10"  id="avaliar"><br><br>
+                    <textarea name="comentario" id="avaliar"></textarea><br><br>
+                    <input type="submit" value="Avaliar" id="avaliar">
                 </form>
             </center>
         </td>
@@ -34,6 +35,10 @@
 <?php
 require_once 'Controle/ControleLocalidade.php';
 
+if($_POST["avaliador"]!=""){
+    
+    echo "<style>#avaliar {visibility:visible;}</style>";
+}
 
 if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     $result = paginaLocalidade($_POST["latMarker"], $_POST["lngMarker"]);

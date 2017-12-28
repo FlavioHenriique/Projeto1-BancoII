@@ -27,3 +27,8 @@ html, body {
 #btCadastrar{
     visibility : hidden;
 }
+
+#avaliar{
+    visibility: hidden;
+}
+
