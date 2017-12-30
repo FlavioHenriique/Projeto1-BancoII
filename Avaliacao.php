@@ -28,6 +28,11 @@
             </center>
         </td>
     </tr>
+    <tr>
+        <td>
+            
+        </td>
+    </tr>
 </table>
 
 </body>
@@ -35,8 +40,9 @@
 <?php
 require_once 'Controle/ControleLocalidade.php';
 
-if($_POST["avaliador"]!=""){
-    
+
+
+if(isset($_POST["avaliador"]) and $_POST["avaliador"]!=""){    
     echo "<style>#avaliar {visibility:visible;}</style>";
 }
 
@@ -49,11 +55,16 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     . $row['inicio'] . "-" . $row['fim'] . "'</script> ";
     echo "<script>email.value='".$_POST['avaliador']."';"
             . "codigo.value='".$row['codigo']."';</script>";
+    
+    require_once 'Controle/ControleAvaliacao.php';
+    
+    getComentarios($row["codigo"]);
 }
 
 if (isset($_POST["email"]) && isset($_POST["nota"]) && isset($_POST["comentario"])){
     
     require_once 'Controle/ControleAvaliacao.php';
     
-    avaliar($_POST["email"], $_POST["nota"], $_POST["comentario"], $_POST["codigo"],$_POST["email"]);
+    avaliar($_POST["email"], $_POST["nota"], $_POST["comentario"],
+            $_POST["codigo"],$_POST["email"]);
 }

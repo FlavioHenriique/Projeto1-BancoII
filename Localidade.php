@@ -14,8 +14,8 @@
                 <td>
                     <form method="post" >
                         <input type="text" name="user" id="user">
-                        <input type="hidden" name="latitude" id="latitude"/>
-                        <input type="hidden" name="longitude" id="longitude"/><br>
+                        <input type="text" name="latitude" id="latitude"/>
+                        <input type="text" name="longitude" id="longitude"/><br>
                         <h2>Cadastro de localidade</h2>
                         Nome:<input type="text" name="nome"><br><br>      
                         Horário de Entrada:<input type="text" name="entrada"><br><br>
@@ -52,7 +52,7 @@ if (isset($_POST["latitude"]) && isset($_POST["longitude"]) && isset($_POST["nom
     require_once 'Controle/ControleLocalidade.php';
 
     $endereco = geocodificar($_POST["latitude"], $_POST["longitude"]);
-
+    
     salvarLocalidade($_POST['latitude'], $_POST['longitude'], $_POST['nome'],
             $_POST['entrada'], $_POST['saida'], $_POST['user'], $endereco["route"],
             $endereco["sublocality_level_1"], $endereco["administrative_area_level_2"]);
