@@ -16,7 +16,7 @@ function avaliar($email, $nota, $comentario, $localidade) {
             . "VALUES ('$email',$localidade,$nota)";
         pg_exec($con, $sql);
     }
-    $sqlcodigo = "SELECT codigo FROM avaliacao ORDER BY codigo DESC LIMIT 1";
+    $sqlcodigo = "SELECT codigo FROM avaliacao WHERE emailusuario='".$email."'";
     $result = pg_query($con, $sqlcodigo);
     $row = pg_fetch_array($result);
     $insercao = "INSERT INTO comentario_avaliacao(codigoavaliacao,comentario)"
