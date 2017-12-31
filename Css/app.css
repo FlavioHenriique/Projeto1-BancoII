@@ -28,7 +28,18 @@ html, body {
     visibility : hidden;
 }
 
-#avaliar{
+#titulo{
+    visibility :hidden;
+}
+
+#nota{
+    visibility :hidden;
+}
+#comentario{
+    visibility :hidden;
+}
+#botao{
     visibility: hidden;
 }
+
 

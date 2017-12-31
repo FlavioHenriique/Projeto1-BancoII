@@ -11,8 +11,8 @@
             <tr>
                 <td>
                     <label id="nome"></label><br>
-                    Endereço: <label id="end"></label><br>
-                    Horário: <label id="horario"></label>
+                    <label id="end"></label><br>
+                    <label id="horario"></label>
                 </td>
                 <td>
             <center>
@@ -20,10 +20,10 @@
                 <form method="post">
                     <input type="hidden" id="codigo" name="codigo" ><br>
                     <input type="hidden" name="email" id="email"><br>
-                    <h1 id="avaliar">Avaliação</h1><br>
-                    <input type="number" name="nota" min="0" max="10"  id="avaliar"><br><br>
-                    <textarea name="comentario" id="avaliar"></textarea><br><br>
-                    <input type="submit" value="Avaliar" id="avaliar">
+                    <label id="titulo">Avaliação</label><br>
+                    <input type="number" name="nota" min="0" max="10"  id="nota"><br><br>
+                    <textarea name="comentario" id="comentario"></textarea><br><br>
+                    <input type="submit" value="Avaliar" id="botao">
                 </form>
             </center>
         </td>
@@ -40,22 +40,24 @@
 <?php
 require_once 'Controle/ControleLocalidade.php';
 
-
-
 if(isset($_POST["avaliador"]) and $_POST["avaliador"]!=""){    
-    echo "<style>#avaliar {visibility:visible;}</style>";
+    require_once 'Controle/ControleAvaliacao.php';
+    verificarUsuario($_POST["avaliador"]);
 }
 
 if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     $result = paginaLocalidade($_POST["latMarker"], $_POST["lngMarker"]);
     $row = pg_fetch_array($result);
     
-    echo "<script> nome.innerHTML='" . $row['nome'] . "'; end.innerHTML='" . $row['rua'] . ", "
-    . "" . $row['bairro'] . ", " . $row['cidade'] . "'; horario.innerHTML='"
+    echo "<script> nome.innerHTML='" . $row['nome'] . "'; end.innerHTML='Endereço: "
+            . "" . $row['rua'] . ", "
+    . "" . $row['bairro'] . ", " . $row['cidade'] . "'; horario.innerHTML='Horário: "
     . $row['inicio'] . "-" . $row['fim'] . "'</script> ";
     echo "<script>email.value='".$_POST['avaliador']."';"
             . "codigo.value='".$row['codigo']."';</script>";
     
+    echo "<style>#nome{color:blue;"
+    . "font-size:40px;} #end{font-size:30px;} #horario{font-size:30px;}</style>";
     require_once 'Controle/ControleAvaliacao.php';
     
     getComentarios($row["codigo"]);
