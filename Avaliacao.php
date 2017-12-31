@@ -13,6 +13,8 @@
                     <label id="nome"></label><br>
                     <label id="end"></label><br>
                     <label id="horario"></label>
+                    <br><br>
+                    <label id="media"></label>
                 </td>
                 <td>
             <center>
@@ -58,8 +60,10 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     
     echo "<style>#nome{color:blue;"
     . "font-size:40px;} #end{font-size:30px;} #horario{font-size:30px;}</style>";
+    
     require_once 'Controle/ControleAvaliacao.php';
     
+    echo "<script>media.innerHTML='Média das avaliações: ". calculaMedia($row['codigo'])."';</script>";
     getComentarios($row["codigo"]);
 }
 

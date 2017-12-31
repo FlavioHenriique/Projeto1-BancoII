@@ -56,11 +56,27 @@ and a.emailusuario='$email'";
     if(pg_num_rows($result)>0){
         $row = pg_fetch_array($result);
          echo "<style>#nota {visibility:visible;} #comentario {visibility:visible;}"
-        . "#botao {visibility:visible;}  #titulo{visibility: visible;}</style><script>nota.value=".$row['nota'].";"
+        . "#botao {visibility:visible;}  #titulo{visibility: visible;}</style>"
+                 . "<script>nota.value=".$row['nota'].";"
                  . "titulo.innerHTML='Editar avaliação';</script>";
     }
     else{
          echo "<style>#nota {visibility:visible;} #comentario {visibility:visible;}"
         . "#botao {visibility:visible;} #titulo{visibility: visible;}</style>";
+    }
+}
+
+function calculaMedia($localidade){
+    
+    require_once 'conexao.php';
+    $con = getConnection();
+    $sql = "SELECT AVG(nota) FROM avaliacao WHERE codigolocalidade=".$localidade;
+    $result = pg_query($con,$sql);
+    
+    $resultado = pg_fetch_array($result);
+    if ($resultado["avg"]!=""){
+        return $resultado["avg"];
+    }else{
+        return 0;
     }
 }
