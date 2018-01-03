@@ -4,19 +4,21 @@ function avaliar($email, $nota, $comentario, $localidade) {
 
     require_once 'conexao.php';
     $con = getConnection();
-    $query = "SELECT codigo FROM avaliacao WHERE emailusuario='$email'";
+    $query = "SELECT codigo FROM avaliacao WHERE emailusuario='$email' "
+            . "and codigolocalidade=$localidade";
     $resultado = pg_query($con,$query);
     if(pg_num_rows($resultado)>0){
-        $row = pg_fetch_array($resultado);
+        $linha = pg_fetch_array($resultado);
         $sqlnota = "UPDATE  avaliacao SET nota=".$nota." WHERE codigo="
-                . "".$row['codigo'];
+                . "".$linha['codigo'];
         pg_exec($con, $sqlnota);
     }else{
         $sql = "INSERT INTO Avaliacao (emailusuario,codigolocalidade,nota) "
             . "VALUES ('$email',$localidade,$nota)";
         pg_exec($con, $sql);
     }
-    $sqlcodigo = "SELECT codigo FROM avaliacao WHERE emailusuario='".$email."'";
+    $sqlcodigo = "SELECT codigo FROM avaliacao WHERE emailusuario='".$email."'"
+            . " and codigolocalidade=$localidade";
     $result = pg_query($con, $sqlcodigo);
     $row = pg_fetch_array($result);
     $insercao = "INSERT INTO comentario_avaliacao(codigoavaliacao,comentario)"
@@ -36,7 +38,7 @@ function getComentarios($codigo) {
     if(pg_num_rows($result)>0){
     echo "Comentários <br> <br><table width='50%' border=1><tr><td>";
     while($row = pg_fetch_array($result)){
-        echo "<b> ".$row["nome"]."-</b> "." ".$row["comentario"]."<hr>";
+        echo "<b> ".$row["nome"]."-</b><br> "." ".$row["comentario"]."<hr>";
     }
     echo "</td></tr></table>";
     }else {
@@ -44,12 +46,15 @@ function getComentarios($codigo) {
     }
 }
 
-function verificarUsuario($email){
+function verificarUsuario($email,$latitude,$longitude){
     require_once 'conexao.php';
     $con = getConnection();
-    $sql = "select ca.comentario,a.nota
-from avaliacao a, comentario_avaliacao ca
+    $sql = "select a.nota
+from avaliacao a, comentario_avaliacao ca, localidade l
 where a.codigo=ca.codigoavaliacao
+and l.codigo=a.codigolocalidade
+and l.latitude= '".$latitude."'
+    and l.longitude= '".$longitude."'
 and a.emailusuario='$email'";
     $result = pg_query($con,$sql);
     

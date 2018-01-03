@@ -32,7 +32,7 @@ function salvarLocalidade($latitude, $longitude, $nome, $entrada, $saida, $user,
         $rua,$bairro,$cidade){
     require_once 'conexao.php'; 
     $con = getConnection();
-    $sql = "INSERT INTO localidad   e(nome,rua,bairro,cidade,inicio,fim,latitude,"
+    $sql = "INSERT INTO localidade(nome,rua,bairro,cidade,inicio,fim,latitude,"
             . "longitude,usuario)"
             . " VALUES('$nome','$rua','$bairro','$cidade','$entrada','$saida',$latitude,"
             . "$longitude,'$user')";
