@@ -18,8 +18,8 @@
                 <td>
             <center>        
                 <form method="post">
-                    <input type="text" id="codigo" name="codigo" ><br>
-                    <input type="text" name="email" id="email"><br>
+                    <input type="hidden" id="codigo" name="codigo" ><br>
+                    <input type="hidden" name="email" id="email"><br>
                     <label id="titulo">Avaliação</label><br>
                     <input type="number" name="nota" min="0" max="10"  id="nota"><br><br>
                     <textarea name="comentario" id="comentario"></textarea><br><br>

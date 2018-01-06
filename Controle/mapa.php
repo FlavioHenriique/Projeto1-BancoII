@@ -5,14 +5,16 @@ function initMap() {
     $con = getConnection();
     $sql = "SELECT latitude,longitude,nome,codigo FROM localidade";
     $result = pg_query($con, $sql);
+    $sqlmedias = "select cast(avg(a.nota) as numeric(10,1)),a.codigolocalidade
+        from avaliacao a, localidade l
+    where a.codigolocalidade=l.codigo group by codigolocalidade, l.nome";
 
     echo " <script>        
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 14
-        });
-       
+        });     
         var infoWindow = new google.maps.InfoWindow({map: map});
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -23,16 +25,27 @@ function initMap() {
     while ($row = pg_fetch_array($result)) {
         echo "var marker = new google.maps.Marker({
       position: {lat: " . $row['latitude'] . ",lng: " . $row['longitude'] . "},
-      map: map, 
-    draggable: true,
-    animation: google.maps.Animation.DROP,
+      map: map, ";
+
+        $resultado = pg_query($con, $sqlmedias);
+        while ($linha = pg_fetch_array($resultado)) {
+            if ($row["codigo"] === $linha["codigolocalidade"]) {
+
+                if ($linha["avg"] >= 7) {
+                    echo "icon: 'Images/verde.png',";
+                } else if ($linha["avg"] >= 4 && $linha["avg"] < 7) {
+                    echo "icon: 'Images/amarelo.png',";
+                }
+            }
+        }
+
+        echo "animation: google.maps.Animation.DROP,
      title: '" . $row["nome"] . "'
 });
             
            marker.addListener('click', function(event){
             latMarker.value=  event.latLng.lat().toFixed(6);
-           lngMarker.value =  event.latLng.lng().toFixed(6);
-           
+           lngMarker.value =  event.latLng.lng().toFixed(6);          
            document.avaliacao.submit();
 });
 ";
@@ -134,8 +147,12 @@ function localizarNome($lat, $lng) {
 
     require_once 'conexao.php';
     $con = getConnection();
-    $sql = "SELECT latitude,longitude,nome FROM localidade";
+    $sql = "SELECT latitude,longitude,nome,codigo FROM localidade";
     $result = pg_query($con, $sql);
+    $sqlmedias = "select cast(avg(a.nota) as numeric(10,1)),a.codigolocalidade
+        from avaliacao a, localidade l
+    where a.codigolocalidade=l.codigo group by codigolocalidade, l.nome";
+
 
     echo "<script>
       var map;
@@ -145,22 +162,44 @@ function localizarNome($lat, $lng) {
           zoom: 15
         });";
     while ($row = pg_fetch_array($result)) {
-        echo "var marker = new google.maps.Marker({
+        echo"var marker = new google.maps.Marker({
       position: {lat: " . $row['latitude'] . ",lng: " . $row['longitude'] . "},
-      map: map, 
-    draggable: true,";
+      map: map,";
+
+        $resultado = pg_query($con, $sqlmedias);
+        while ($linha = pg_fetch_array($resultado)) {
+            if ($row["codigo"] === $linha["codigolocalidade"]) {
+
+                if ($linha["avg"] >= 7) {
+                    echo "icon: 'Images/verde.png',";
+                } else if ($linha["avg"] >= 4 && $linha["avg"] < 7) {
+                    echo "icon: 'Images/amarelo.png',";
+                }
+            }
+        }
+
         if ($row["latitude"] === $lat && $row["longitude"] === $lng) {
-            echo "animation: google.maps.Animation.BOUNCE,"
-            . "  title: '" . $row["nome"] . "'
-});";
+            echo "animation: google.maps.Animation.BOUNCE, "
+            . " title: '" . $row['nome'] . "'
+});
+";
         } else {
             echo"
-    animation: google.maps.Animation.DROP,
-     title: '" . $row["nome"] . "'
-});";
+animation: google.maps.Animation.DROP,
+ title: '" . $row["nome"] . "'
+});
+";
         }
+        echo "marker.addListener('click', function(event){
+latMarker.value = event.latLng.lat().toFixed(6);
+lngMarker.value = event.latLng.lng().toFixed(6);
+
+document.avaliacao.submit();
+});
+";
     }
-    echo "}
+    echo "
+}
 </script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCHoafMtF7Sv5XiUhhTpnqv82PaGuFM3u4&callback=initMap'
 async defer></script>";

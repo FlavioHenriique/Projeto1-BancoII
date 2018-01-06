@@ -75,7 +75,7 @@ function calculaMedia($localidade){
     
     require_once 'conexao.php';
     $con = getConnection();
-    $sql = "SELECT AVG(nota) FROM avaliacao WHERE codigolocalidade=".$localidade;
+    $sql = "SELECT CAST(AVG(nota) as Numeric(10,1)) FROM avaliacao WHERE codigolocalidade=".$localidade;
     $result = pg_query($con,$sql);
     
     $resultado = pg_fetch_array($result);
