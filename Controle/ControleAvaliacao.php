@@ -25,6 +25,7 @@ function avaliar($email, $nota, $comentario, $localidade) {
             . "VALUES (" . $row['codigo'] . ",'" . $comentario . "')";
     pg_exec($con, $insercao);
     echo "<script>alert('Avaliação realizada!');</script>";
+    header('Location: index.php');
 }
 
 function getComentarios($codigo) {

@@ -147,6 +147,13 @@ function localizarNome($lat, $lng) {
 
     require_once 'conexao.php';
     $con = getConnection();
+    $busca = "SELECT * FROM localidade WHERE latitude='".$lat."'"
+            . " AND longitude = '".$lng."'";
+    $resultado = pg_query($con,$busca);
+    if(pg_num_rows($resultado)==0){
+        echo "<script>alert('Localidade não encontrada!');</script>";
+        initMap();
+    }else{        
     $sql = "SELECT latitude,longitude,nome,codigo FROM localidade";
     $result = pg_query($con, $sql);
     $sqlmedias = "select cast(avg(a.nota) as numeric(10,1)),a.codigolocalidade
@@ -203,4 +210,5 @@ document.avaliacao.submit();
 </script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCHoafMtF7Sv5XiUhhTpnqv82PaGuFM3u4&callback=initMap'
 async defer></script>";
+    }
 }

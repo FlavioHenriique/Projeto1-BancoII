@@ -13,9 +13,9 @@
                 </td>
                 <td>
                     <form method="post" >
-                        <input type="text" name="user" id="user">
-                        <input type="text" name="latitude" id="latitude"/>
-                        <input type="text" name="longitude" id="longitude"/><br>
+                        <input type="hidden" name="user" id="user">
+                        <input type="hidden" name="latitude" id="latitude"/>
+                        <input type="hidden" name="longitude" id="longitude"/><br>
                         <h2>Cadastro de localidade</h2>
                         Nome:<input type="text" name="nome"><br><br>      
                         Horário de Entrada:<input type="text" name="entrada"><br><br>

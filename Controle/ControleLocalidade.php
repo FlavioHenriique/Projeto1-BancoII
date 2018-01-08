@@ -44,8 +44,7 @@ function salvarLocalidade($latitude, $longitude, $nome, $entrada, $saida, $user,
 
 function buscarNome($nome){
     
-    require_once 'conexao.php';
-    require_once 'ControleLocalidade.php';
+    require_once 'conexao.php';  
     require_once 'mapa.php';
     
     $con = getConnection();
@@ -66,4 +65,8 @@ function paginaLocalidade($lat,$lng){
     $sql = "SELECT * FROM LOCALIDADE WHERE latitude='$lat' AND longitude='$lng'";
      $result = pg_query($con,$sql);
      return $result;
+}
+
+function buscaEndereco($endereco){
+    
 }

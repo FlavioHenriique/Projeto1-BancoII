@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Projeto 1</title>
+        <title>Tela Inicial</title>
         <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
@@ -32,13 +32,15 @@
                         <tr>
                             <td>
                                 <form method="post">
-                                    <input type="text" name="buscaNome" placeholder="Nome da localidade">
+                                    <input type="text" name="buscaNome" 
+                                           placeholder="Nome da localidade">
                                     <input type="submit" value="Buscar">
                                 </form>
                             </td>
                             <td>
                                 <form method="post">
-                                    <input type="text" name="buscaEndereco" placeholder="Endereço">
+                                    <input type="text" name="buscaEndereco" 
+                                           placeholder="Endereço">
                                     <input type="submit" value="Buscar">
                                 </form>
                             </td>
@@ -86,6 +88,11 @@
 <?php
 require_once 'Controle/controleUsuario.php';
 require_once 'Controle/mapa.php';
+
+if (isset($_POST["buscaEndereco"])){
+    
+    
+}
 
 if (isset($_POST["buscaNome"])) {
 
