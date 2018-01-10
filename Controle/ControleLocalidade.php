@@ -66,7 +66,3 @@ function paginaLocalidade($lat,$lng){
      $result = pg_query($con,$sql);
      return $result;
 }
-
-function buscaEndereco($endereco){
-    
-}

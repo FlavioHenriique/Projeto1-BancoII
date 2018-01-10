@@ -1,4 +1,4 @@
- #map {
+#map {
     height: 100%;
     width: 100%;
 }
@@ -10,7 +10,7 @@ html, body {
 
 #login {
     float :right;
-    
+
 }
 
 .tabela{
@@ -21,7 +21,7 @@ html, body {
 #nomeUsuario{
     font-family: verdana;
     font-size:150%;
-    color:white;
+    color: #FF4500;
 }
 
 #btCadastrar{
@@ -30,6 +30,9 @@ html, body {
 
 #titulo{
     visibility :hidden;
+    font-family: Verdana;
+    font-size: 30px;
+    color: #FFA500;
 }
 
 #nota{
@@ -42,4 +45,59 @@ html, body {
     visibility: hidden;
 }
 
+.comentarios  {
+    background-color: white;
+    border : 1px solid black;
+    width: 50%;
+}
+
+/*
+button,input[type=submit] {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+*/
+button, input[type=submit]{
+
+
+    display: inline-block;
+    border:1px solid #000000;
+    color: black;
+    border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    font-family: Verdana;
+    width: auto;
+    height: auto;
+    font-size: 13px;
+    padding: 10px 10px;
+    box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+    -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+    -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+    text-shadow: 0 1px 0 #FFFFFF;
+    background-color: #FFD700;
+}
+button,input[type=submit]:hover{
+    border:1px solid #967D09;
+    color: #705D07;
+    box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
+    -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
+    -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
+    background-color: #FCDF5B;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+a:hover{
+    color: #B0E0E6;
+}
 

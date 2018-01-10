@@ -37,9 +37,9 @@ function getComentarios($codigo) {
     AND ca.comentario<>''  and a.emailusuario=u.email";
     $result = pg_query($con, $sql);
     if(pg_num_rows($result)>0){
-    echo "Comentários <br> <br><table width='50%' border=1><tr><td>";
+    echo "<h2>Comentários</h2> <table  class='comentarios'><tr><td>";;
     while($row = pg_fetch_array($result)){
-        echo "<b> ".$row["nome"]."-</b><br> "." ".$row["comentario"]."<hr>";
+        echo "<b> ".$row["nome"]."  </b><br> "." ".$row["comentario"]."<hr>";
     }
     echo "</td></tr></table>";
     }else {

@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
-        <table width="100%" height="80%" class="tabela"><tr bgcolor="#B0E0E6">
+        <table width="100%" height="80%" class="tabela"><tr bgcolor="#DCDCDC">
                 <td width="50%"> <h1>Tela Inicial</h1>
                     <b> <label id="nomeUsuario"></label></b>
                 </td>
@@ -21,7 +21,11 @@
                                     <td><input type="password" name="senha"></td>
                                     <td> <input type="submit" value="Entrar"></td>
                                 </tr>
-                                <tr><td><label id="autenticacao"></label></td></tr>
+                                <tr>
+                                    <td>
+                                        <label id="autenticacao"></label>
+                                    </td>
+                                </tr>
                             </table>           
                         </form></div>
                 </td>

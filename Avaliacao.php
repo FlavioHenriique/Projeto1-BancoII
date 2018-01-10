@@ -20,9 +20,10 @@
                 <form method="post">
                     <input type="hidden" id="codigo" name="codigo" ><br>
                     <input type="hidden" name="email" id="email"><br>
-                    <label id="titulo">Avaliação</label><br>
+                    <b><label id="titulo">Avaliação</label></b><br><br>
                     <input type="number" name="nota" min="0" max="10"  id="nota"><br><br>
-                    <textarea name="comentario" id="comentario"></textarea><br><br>
+                    <textarea type="text" rows=5 id="comentario" name="comentario" 
+                              maxlength=7> </textarea><br><br>
                     <input type="submit" value="Avaliar" id="botao">
                 </form>
             </center>
@@ -43,21 +44,22 @@ require_once 'Controle/ControleLocalidade.php';
 if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     $result = paginaLocalidade($_POST["latMarker"], $_POST["lngMarker"]);
     $row = pg_fetch_array($result);
-
+    
     echo "<script> nome.innerHTML='" . $row['nome'] . "'; end.innerHTML='Endereço: "
-    . "" . $row['rua'] . ", "
-    . "" . $row['bairro'] . ", " . $row['cidade'] . "'; horario.innerHTML='Horário: "
+    . "" . $row['rua'] . " <br>"
+    . "" . $row['bairro'] . "- " . $row['cidade'] . "'; horario.innerHTML='Horário: "
     . $row['inicio'] . "-" . $row['fim'] . "'</script> ";
     echo "<script>email.value='" . $_POST['avaliador'] . "';"
     . "codigo.value='" . $row['codigo'] . "';</script>";
 
-    echo "<style>#nome{color:blue;"
+    echo "<style>#nome{color:#FFA500;"
     . "font-size:40px;} #end{font-size:30px;} #horario{font-size:30px;}</style>";
 
     require_once 'Controle/ControleAvaliacao.php';
 
     echo "<script>media.innerHTML='Média das avaliações: " . 
-            calculaMedia($row['codigo']) . "';</script>";
+            calculaMedia($row['codigo']) . "';</script>"
+            . "<style>#media{font-size:30px; }</style>";
     getComentarios($row["codigo"]);
 }
 
