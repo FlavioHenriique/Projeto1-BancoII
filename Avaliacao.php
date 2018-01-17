@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,20 +16,17 @@
                 </td>
                 <td>
             <center>        
-                <form method="post">
-                    <input type="hidden" id="codigo" name="codigo" ><br>
+                <form method="post" >
+                        <input type="hidden" id="codigo" name="codigo" ><br>
                     <input type="hidden" name="email" id="email"><br>
-                    <b><label id="titulo">Avaliação</label></b><br><br>
-                    <input type="number" name="nota" min="0" max="10"  id="nota"><br><br>
+                    
+                    <b><h2 class="avaliacao" id="titulo">Avaliação</h2></b>
+                    <input type="number" name="nota" min="0" max="10"  id="nota" class="avaliacao"><br><br>
                     <textarea type="text" rows=5 id="comentario" name="comentario" 
-                              maxlength=7> </textarea><br><br>
-                    <input type="submit" value="Avaliar" id="botao">
+                              maxlength=70 class="avaliacao"> </textarea><br><br>
+                    <input type="submit" value="Avaliar" id="botao">         
                 </form>
             </center>
-        </td>
-    </tr>
-    <tr>
-        <td>
         </td>
     </tr>
 </table>
@@ -52,7 +48,7 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     echo "<script>email.value='" . $_POST['avaliador'] . "';"
     . "codigo.value='" . $row['codigo'] . "';</script>";
 
-    echo "<style>#nome{color:#FFA500;"
+    echo "<style>#nome{color:#B22222;"
     . "font-size:40px;} #end{font-size:30px;} #horario{font-size:30px;}</style>";
 
     require_once 'Controle/ControleAvaliacao.php';

@@ -75,6 +75,8 @@ function initMap() {
 
 function addLocalidade() {
 
+     
+    
     require_once 'conexao.php';
     $con = getConnection();
     $sql = "SELECT latitude,longitude,nome FROM localidade";
@@ -143,7 +145,7 @@ function addLocalidade() {
 ";
 }
 
-function localizarNome($lat, $lng) {
+function localizar($lat, $lng) {
 
     require_once 'conexao.php';
     $con = getConnection();
@@ -212,3 +214,4 @@ document.avaliacao.submit();
 async defer></script>";
     }
 }
+

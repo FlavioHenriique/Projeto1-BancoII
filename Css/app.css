@@ -1,5 +1,5 @@
 #map {
-    height: 100%;
+    height: 80%;
     width: 100%;
 }
 html, body {
@@ -10,29 +10,30 @@ html, body {
 
 #login {
     float :right;
-
 }
 
-.tabela{
+.tabela,.localidade{
     font-family: verdana;
-    font-size:90%;
+    font-size:15px;
+    color:#B22222;
 }
 
 #nomeUsuario{
     font-family: verdana;
     font-size:150%;
-    color: #FF4500;
+    color: white;
 }
 
 #btCadastrar{
     visibility : hidden;
 }
 
-#titulo{
+.avaliacao{
     visibility :hidden;
     font-family: Verdana;
-    font-size: 30px;
-    color: #FFA500;
+    color: #B22222;
+    border-color: #B22222;
+    padding: 10px 10px;
 }
 
 #nota{
@@ -51,53 +52,64 @@ html, body {
     width: 50%;
 }
 
-/*
-button,input[type=submit] {
-    background-color: white;
-    border: 2px solid black;
-    color: black;
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-*/
 button, input[type=submit]{
 
-
     display: inline-block;
-    border:1px solid #000000;
-    color: black;
+    border:1px solid #B22222;
+    
     border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
     font-family: Verdana;
     width: auto;
     height: auto;
+    font-style: bold;
+    box-shadow: inset 0 1px 0 0 #B22222,inset 0 -1px 0 0 #B22222,inset 0 0 0 1px #B22222,0 2px 4px 0 #D4D4D4;
+    -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+    -webkit-box-shadow: inset 0 1px 0 0 white,inset 0 -1px 0 0 WHITE,inset 0 0 0 1px white,0 2px 4px 0 white;
+    text-shadow: 0 1px 0 white;
     font-size: 13px;
     padding: 10px 10px;
-    box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
-    -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
-    -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
-    text-shadow: 0 1px 0 #FFFFFF;
-    background-color: #FFD700;
+    color: white;
+    background-color: #B22222;
 }
 button,input[type=submit]:hover{
-    border:1px solid #967D09;
-    color: #705D07;
-    box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
-    -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
-    -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
-    background-color: #FCDF5B;
+    
+    background-color: #FA8072;
+    box-shadow: inset 0 1px 0 0 #B22222,inset 0 -1px 0 0 #B22222,inset 0 0 0 1px #B22222,0 2px 4px 0 #D4D4D4;
+    -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+    -webkit-box-shadow: inset 0 1px 0 0 white,inset 0 -1px 0 0 WHITE,inset 0 0 0 1px white,0 2px 4px 0 white;
 }
 
 a{
+    color : #B22222;
     text-decoration: none;
 }
 
 
 a:hover{
-    color: #B0E0E6;
+    color:#FA8072;
 }
 
+.palavras{
+    color: #B22222;
+    font-family: verdana;
+    font-size: 16px;
+    font-style: bold;
+}
+
+input {
+    color : #B22222;
+    font-family: fantasy;
+    
+    border: 2px solid lightgray;
+}
+
+input.palavras {
+    padding : 10px 10px;
+    font-style: italic;
+}
+
+.topo{
+    color:white;
+}

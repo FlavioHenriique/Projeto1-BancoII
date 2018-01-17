@@ -5,16 +5,16 @@
         <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
-        <table width="100%" height="80%" class="tabela"><tr bgcolor="#DCDCDC">
-                <td width="50%"> <h1>Tela Inicial</h1>
+        <table width="100%" height="90%" class="tabela"><tr bgcolor="#B22222" class="topo">
+                <td width="50%"><h1>Tela Inicial</h1>
                     <b> <label id="nomeUsuario"></label></b>
                 </td>
                 <td>
                     <div id="login"><form method="post" tex-align="right">
                             <table>
                                 <tr>
-                                    <td><b>Email</b></td>     
-                                    <td><b>Senha</b></td>
+                                    <td><b><label class="topo">Email</label></b></td>     
+                                    <td><b><label class="topo">Senha</label></b></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" name="email"></td>
@@ -30,7 +30,7 @@
                         </form></div>
                 </td>
             </tr>
-            <tr height="90%">
+            <tr height="90%" bgcolor="#F5F5F5">
                 <td>
                     <table>
                         <tr>
@@ -74,10 +74,10 @@
         </td>
         <td>
             <form method="post"><center>
-                    <h2>Cadastro de Usuário</h2>
-                    Nome <input type="text" name="cadNome"><br><br>
-                    Email <input type="text" name="cadEmail"><br><br>
-                    Senha <input type="password" name="cadSenha"><br><br>
+                    <h2 class="palavras">Cadastro de Usuário</h2>
+                    <label class="palavras">Nome </label><input type="text" name="cadNome" class="palavras"><br><br>
+                    <label class="palavras">Email </label><input type="text" name="cadEmail" class="palavras"><br><br>
+                    <label class="palavras">Senha </label><input type="password" name="cadSenha" class="palavras"><br><br>
                     <label id="cadastro"></label><br><br>
                     <input type="submit" value="Cadastrar">
                 </center>
@@ -93,12 +93,11 @@
 require_once 'Controle/controleUsuario.php';
 require_once 'Controle/mapa.php';
 
-if (isset($_POST["buscaEndereco"])){
+if (isset($_POST["buscaEndereco"])) {
+    require_once 'Controle/ControleLocalidade.php';
+    buscarEndereco($_POST["buscaEndereco"]);
     
-    
-}
-
-if (isset($_POST["buscaNome"])) {
+} else if (isset($_POST["buscaNome"])) {
 
     require_once 'Controle/ControleLocalidade.php';
     buscarNome($_POST["buscaNome"]);
@@ -122,4 +121,3 @@ if (isset($_POST["buscaNome"])) {
 } else {
     initMap();
 }
-?>  

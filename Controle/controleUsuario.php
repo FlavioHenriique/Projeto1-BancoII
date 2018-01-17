@@ -16,8 +16,8 @@ function autenticar($email, $senha) {
         echo "<style>#btCadastrar{visibility: visible;}</style>";
     } else {
         echo"<script>autenticacao.innerHTML='Usuário não encontrado!';</script>"
-        . "<style>#autenticacao{color:red;}</style>";
-    }
+        . "<style>#autenticacao{color:white;}</style>";
+    }   
 }
 
 function cadastrarUsuario($cadEmail, $cadNome, $cadSenha) {
@@ -34,6 +34,6 @@ function cadastrarUsuario($cadEmail, $cadNome, $cadSenha) {
         $cadastro = "INSERT INTO Usuario (nome,email,senha) VALUES('"
                 . $cadNome . "','" . $cadEmail . "','" . $cadSenha . "')";
         pg_exec($con, $cadastro);
-        return "Usuário cadastrado com sucesso! ";
+        return "Usuário cadastrado com sucesso! <style>#cadastro{color:green;}</style>";
     }
 }

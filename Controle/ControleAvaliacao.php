@@ -5,7 +5,7 @@ function avaliar($email, $nota, $comentario, $localidade) {
     require_once 'conexao.php';
     $con = getConnection();
     $query = "SELECT codigo FROM avaliacao WHERE emailusuario='$email' "
-            . "and codigolocalidade=$localidade";
+            . "AND codigolocalidade=$localidade";
     $resultado = pg_query($con,$query);
     if(pg_num_rows($resultado)>0){
         $linha = pg_fetch_array($resultado);
@@ -18,14 +18,15 @@ function avaliar($email, $nota, $comentario, $localidade) {
         pg_exec($con, $sql);
     }
     $sqlcodigo = "SELECT codigo FROM avaliacao WHERE emailusuario='".$email."'"
-            . " and codigolocalidade=$localidade";
+            . " AND codigolocalidade=$localidade";
     $result = pg_query($con, $sqlcodigo);
     $row = pg_fetch_array($result);
     $insercao = "INSERT INTO comentario_avaliacao(codigoavaliacao,comentario)"
             . "VALUES (" . $row['codigo'] . ",'" . $comentario . "')";
     pg_exec($con, $insercao);
-    echo "<script>alert('Avaliação realizada!');</script>";
     header('Location: index.php');
+    
+    echo "<script>alert('Avaliação realizada!');</script>";
 }
 
 function getComentarios($codigo) {
@@ -34,7 +35,7 @@ function getComentarios($codigo) {
     $con = getConnection();
     $sql = "SELECT ca.comentario, u.nome FROM avaliacao a,comentario_avaliacao ca,
     usuario u WHERE a.codigolocalidade=".$codigo."AND a.codigo=ca.codigoavaliacao
-    AND ca.comentario<>''  and a.emailusuario=u.email";
+    AND ca.comentario<>''  AND a.emailusuario=u.email";
     $result = pg_query($con, $sql);
     if(pg_num_rows($result)>0){
     echo "<h2>Comentários</h2> <table  class='comentarios'><tr><td>";;
@@ -50,13 +51,13 @@ function getComentarios($codigo) {
 function verificarUsuario($email,$latitude,$longitude){
     require_once 'conexao.php';
     $con = getConnection();
-    $sql = "select a.nota
-from avaliacao a, comentario_avaliacao ca, localidade l
-where a.codigo=ca.codigoavaliacao
-and l.codigo=a.codigolocalidade
-and l.latitude= '".$latitude."'
-    and l.longitude= '".$longitude."'
-and a.emailusuario='$email'";
+    $sql = "SELECT a.nota
+FROM avaliacao a, comentario_avaliacao ca, localidade l
+WHERE a.codigo=ca.codigoavaliacao
+AND l.codigo=a.codigolocalidade
+AND l.latitude= '".$latitude."'
+    AND l.longitude= '".$longitude."'
+AND a.emailusuario='$email'";
     $result = pg_query($con,$sql);
     
     if(pg_num_rows($result)>0){
@@ -76,7 +77,8 @@ function calculaMedia($localidade){
     
     require_once 'conexao.php';
     $con = getConnection();
-    $sql = "SELECT CAST(AVG(nota) as Numeric(10,1)) FROM avaliacao WHERE codigolocalidade=".$localidade;
+    $sql = "SELECT CAST(AVG(nota) as Numeric(10,1)) FROM avaliacao"
+            . " WHERE codigolocalidade=".$localidade;
     $result = pg_query($con,$sql);
     
     $resultado = pg_fetch_array($result);
