@@ -19,7 +19,6 @@
                 <form method="post" >
                         <input type="hidden" id="codigo" name="codigo" ><br>
                     <input type="hidden" name="email" id="email"><br>
-                    
                     <b><h2 class="avaliacao" id="titulo">Avaliação</h2></b>
                     <input type="number" name="nota" min="0" max="10"  id="nota" class="avaliacao"><br><br>
                     <textarea type="text" rows=5 id="comentario" name="comentario" 

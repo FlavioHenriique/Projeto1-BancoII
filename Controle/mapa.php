@@ -75,8 +75,6 @@ function initMap() {
 
 function addLocalidade() {
 
-     
-    
     require_once 'conexao.php';
     $con = getConnection();
     $sql = "SELECT latitude,longitude,nome FROM localidade";
@@ -84,7 +82,7 @@ function addLocalidade() {
 
     echo " <script>   
         function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('mapa'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 14
         });

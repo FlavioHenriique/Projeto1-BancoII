@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
-        <table width="100%" height="90%" class="tabela"><tr bgcolor="#B22222" class="topo">
+        <table width="100%" height="100%" class="tabela"><tr bgcolor="#B22222" class="topo">
                 <td width="50%"><h1>Tela Inicial</h1>
                     <b> <label id="nomeUsuario"></label></b>
                 </td>
@@ -74,10 +74,10 @@
         </td>
         <td>
             <form method="post"><center>
-                    <h2 class="palavras">Cadastro de Usuário</h2>
-                    <label class="palavras">Nome </label><input type="text" name="cadNome" class="palavras"><br><br>
-                    <label class="palavras">Email </label><input type="text" name="cadEmail" class="palavras"><br><br>
-                    <label class="palavras">Senha </label><input type="password" name="cadSenha" class="palavras"><br><br>
+                    <h2>Cadastro de Usuário</h2>
+                    <input type="text" name="cadNome" class="palavras" placeholder="Nome"><br><br>
+                    <input type="text" name="cadEmail" class="palavras" placeholder="Email"><br><br>
+                    <input type="password" name="cadSenha" class="palavras" placeholder="Senha"><br><br>
                     <label id="cadastro"></label><br><br>
                     <input type="submit" value="Cadastrar">
                 </center>
