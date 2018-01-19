@@ -35,7 +35,7 @@ function getComentarios($codigo) {
     $con = getConnection();
     $sql = "SELECT ca.comentario, u.nome FROM avaliacao a,comentario_avaliacao ca,
     usuario u WHERE a.codigolocalidade=".$codigo."AND a.codigo=ca.codigoavaliacao
-    AND ca.comentario <> ' '  AND a.emailusuario=u.email";
+    AND ca.comentario <> ' '  AND a.emailusuario=u.email ORDER BY ca.codigoavaliacao";
     $result = pg_query($con, $sql);
     if(pg_num_rows($result)>0){
     echo "<h2> &nbsp; Comentários</h2>";

@@ -29,11 +29,7 @@
                     <input type="submit" value="Cadastrar">
                 </form>
 
-                <form method="post" action="index.php" name="voltar">
-                    <input type="hidden" name="senha" id="senhaUser">
-                    <input type="hidden" name="email" id="emailUser">
-                    <input type="submit" href="javascript: voltar.submit();" value="Voltar a página inicial">
-                </form>
+                <a href="index.php">Voltar</a>
             </center>
         </td>
     </tr>

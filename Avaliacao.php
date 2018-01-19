@@ -25,6 +25,7 @@
                               maxlength=70 class="avaliacao"> </textarea><br><br>
                     <input type="submit" value="Avaliar" id="botao">         
                 </form>
+                <a href="index.php"> Voltar</a>
             </center>
         </td>
     </tr>
