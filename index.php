@@ -93,46 +93,38 @@ session_start();
 </body>
 </html>
 <?php
-
 require_once 'Controle/controleUsuario.php';
 require_once 'Controle/mapa.php';
 require_once 'Modelo/Usuario.php';
+require_once 'Controle/ControleLocalidade.php';
 
 $controladorUsuario = new controleUsuario();
+$mapa = new mapa();
+$controladorLocalidade = new ControleLocalidade();
 
 if (isset($_SESSION["usuario"])) {
-     $obj = unserialize($_SESSION["usuario"]);
-     $controladorUsuario->autenticar($obj->getEmail(), $obj->getSenha());
+    $obj = unserialize($_SESSION["usuario"]);
+    $controladorUsuario->autenticar($obj->getEmail(), $obj->getSenha());
 }
 
 if (isset($_POST["buscaEndereco"])) {
-    require_once 'Controle/ControleLocalidade.php';
-    buscarEndereco($_POST["buscaEndereco"]);
-} else if (isset($_POST["buscaNome"])) {
 
-    require_once 'Controle/ControleLocalidade.php';
-    buscarNome($_POST["buscaNome"]);
+    $controladorLocalidade->buscarEndereco($_POST["buscaEndereco"]);
+}  else if (isset($_POST["buscaNome"])) {
+
+    $controladorLocalidade->buscarNome($_POST["buscaNome"]);
 } else if (isset($_POST["email"]) && isset($_POST["senha"])) {
 
     $email = $_POST["email"];
     $senha = $_POST["senha"];
     $controladorUsuario->autenticar($email, $senha);
-    initMap();
+    $mapa->initMap();
 } else if (isset($_POST["cadEmail"]) && isset($_POST["cadNome"]) &&
         isset($_POST["cadSenha"])) {
 
-    /*
-      $cadEmail = $_POST["cadEmail"];
-      $cadNome = $_POST["cadNome"];
-      $cadSenha = $_POST["cadSenha"];
-
-      echo "<script>cadastro.innerHTML='" .
-      cadastrarUsuario($cadEmail, $cadNome, $cadSenha) . "';</script>";
-     */
-    
     echo "<script>cadastro.innerHTML='" . $controladorUsuario->cadastrarUsuario
             ($_POST["cadEmail"], $_POST["cadNome"], $_POST["cadSenha"]) . "';</script>";
-    initMap();
+   $mapa->initMap();
 } else {
-    initMap();
+    $mapa->initMap();
 }

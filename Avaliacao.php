@@ -1,7 +1,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Informações sobre a localidade</title>
         <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
@@ -30,11 +29,11 @@
         </td>
     </tr>
 </table>
-
 </body>
 </html>
 <?php
 require_once 'Controle/ControleLocalidade.php';
+
 
 
 if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
@@ -57,6 +56,7 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
             calculaMedia($row['codigo']) . "';</script>"
             . "<style>#media{font-size:30px; }</style>";
     getComentarios($row["codigo"]);
+    echo "<head><title>".$row["nome"]."</title></head>";
 }
 
 if (isset($_POST["avaliador"]) and $_POST["avaliador"] != "") {
