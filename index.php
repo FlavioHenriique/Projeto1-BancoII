@@ -58,21 +58,15 @@ session_start();
                                       action="Avaliacao.php">
                                     <input type="hidden" name="latMarker" id="latMarker">
                                     <input type="hidden" name="lngMarker" id="lngMarker">
-                                    <input type="hidden" name="avaliador" id="avaliador">
                                 </form>
                             </td>
                         </tr>
                     </table>
-
-
-                    <label id="resultadoBusca"></label>
                     <div id="map"></div><br><br>
             <center>
-                <form method="post" action="Localidade.php">
-                    <input type="hidden" name="user" id="user">
-                    <input type="hidden" name="userPass" id="userPass"><br>
-                    <button id="btCadastrar">CADASTRAR LOCALIDADE</button>
-                </form>
+              
+                <a href="Localidade.php"><button id="btCadastrar" >CADASTRAR LOCALIDADE</button></a>
+                
             </center>
         </td>
         <td>
@@ -88,8 +82,6 @@ session_start();
         </td>
     </tr>
 </table>
-<br>
-<br><br>
 </body>
 </html>
 <?php

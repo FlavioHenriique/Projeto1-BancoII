@@ -39,9 +39,9 @@ class mapa {
                 if ($row["codigo"] === $linha["codigolocalidade"]) {
 
                     if ($linha["avg"] >= 7) {
-                        echo "icon: 'Images/verde.png',";
+                        echo "icon: 'Imagens/verde.png',";
                     } else if ($linha["avg"] >= 4 && $linha["avg"] < 7) {
-                        echo "icon: 'Images/amarelo.png',";
+                        echo "icon: 'Imagens/amarelo.png',";
                     }
                 }
             }
@@ -159,15 +159,13 @@ class mapa {
         $resultado = pg_query($con, $busca);
         if (pg_num_rows($resultado) == 0) {
             echo "<script>alert('Localidade não encontrada!');</script>";
-            initMap();
+            $this->initMap();
         } else {
             $sql = "SELECT latitude,longitude,nome,codigo FROM localidade";
             $result = pg_query($con, $sql);
             $sqlmedias = "select cast(avg(a.nota) as numeric(10,1)),a.codigolocalidade
         from avaliacao a, localidade l
     where a.codigolocalidade=l.codigo group by codigolocalidade, l.nome";
-
-
             echo "<script>
       var map;
       function initMap() {
@@ -185,13 +183,12 @@ class mapa {
                     if ($row["codigo"] === $linha["codigolocalidade"]) {
 
                         if ($linha["avg"] >= 7) {
-                            echo "icon: 'Images/verde.png',";
+                            echo "icon: 'Imagens/verde.png',";
                         } else if ($linha["avg"] >= 4 && $linha["avg"] < 7) {
-                            echo "icon: 'Images/amarelo.png',";
+                            echo "icon: 'Imagens/amarelo.png',";
                         }
                     }
                 }
-
                 if ($row["latitude"] === $lat && $row["longitude"] === $lng) {
                     echo "animation: google.maps.Animation.BOUNCE, "
                     . " title: '" . $row['nome'] . "'

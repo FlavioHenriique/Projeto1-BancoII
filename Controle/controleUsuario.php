@@ -4,9 +4,9 @@ require_once 'conexao.php';
 require_once 'Modelo/Usuario.php';
 
 class ControleUsuario {
-
+ 
+    
     function __construct() {
-        
     }
 
     function autenticar($email, $senha) {

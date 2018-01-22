@@ -7,7 +7,6 @@ require_once 'conexao.php';
 class ControleLocalidade {
 
 
-
     function geocodificar($lat, $long) {
         $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng={$lat},{$long}&sensor=false";
         $content = @file_get_contents($url);
@@ -39,12 +38,11 @@ class ControleLocalidade {
     function salvarLocalidade( $localidade) {
         require_once 'conexao.php';
         $con = getConnection();
-        var_dump($localidade);
         $sql = "INSERT INTO localidade(nome,rua,bairro,cidade,inicio,fim,latitude,"
                 . "longitude,usuario)"
                 . " VALUES('".$localidade->getNome()."','".$localidade->getRua()."','"
                 .$localidade->getBairro()."','".$localidade->getCidade()."','"
-                . "'".$localidade->getEntrada()."','".$localidade->getSaida()."','".$localidade->getLatitude()."','"
+                . "".$localidade->getEntrada()."','".$localidade->getSaida()."','".$localidade->getLatitude()."','"
                  .$localidade->getLongitude()."','".$localidade->getUser()."')";
         pg_exec($con, $sql);
         echo "<script>alert('Localidade Cadastrada com sucesso!');"

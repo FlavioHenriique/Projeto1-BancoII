@@ -1,5 +1,7 @@
 <?php   
 
+
+class ControleAvaliacao{
 function avaliar($email, $nota, $comentario, $localidade) {
 
     require_once 'conexao.php';
@@ -86,4 +88,5 @@ function calculaMedia($localidade){
     }else{
         return 0;
     }
+}
 }
