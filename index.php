@@ -20,8 +20,8 @@ session_start();
                                     <td><b><label class="topo">Senha</label></b></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" name="email"></td>
-                                    <td><input type="password" name="senha"></td>
+                                    <td><input type="text" name="email" maxlength="50"></td>
+                                    <td><input type="password" name="senha" maxlength="50"></td>
                                     <td> <input type="submit" value="Entrar"></td>
                                 </tr>
                                 <tr>
@@ -64,17 +64,20 @@ session_start();
                     </table>
                     <div id="map"></div><br><br>
             <center>
-              
+
                 <a href="Localidade.php"><button id="btCadastrar" >CADASTRAR LOCALIDADE</button></a>
-                
+
             </center>
         </td>
         <td>
             <form method="post"><center>
                     <h2>Cadastro de Usuário</h2>
-                    <input type="text" name="cadNome" class="palavras" placeholder="Nome"><br><br>
-                    <input type="text" name="cadEmail" class="palavras" placeholder="Email"><br><br>
-                    <input type="password" name="cadSenha" class="palavras" placeholder="Senha"><br><br>
+                    <input type="text" name="cadNome" class="palavras" 
+                           placeholder="Nome" maxlength="50"><br><br>
+                    <input type="text" name="cadEmail" class="palavras" 
+                           placeholder="Email" maxlength="50"><br><br>
+                    <input type="password" name="cadSenha" class="palavras" 
+                           placeholder="Senha" maxlength="50"> <br><br>
                     <label id="cadastro"></label><br><br>
                     <input type="submit" value="Cadastrar">
                 </center>
@@ -102,7 +105,7 @@ if (isset($_SESSION["usuario"])) {
 if (isset($_POST["buscaEndereco"])) {
 
     $controladorLocalidade->buscarEndereco($_POST["buscaEndereco"]);
-}  else if (isset($_POST["buscaNome"])) {
+} else if (isset($_POST["buscaNome"])) {
 
     $controladorLocalidade->buscarNome($_POST["buscaNome"]);
 } else if (isset($_POST["email"]) && isset($_POST["senha"])) {
@@ -116,7 +119,7 @@ if (isset($_POST["buscaEndereco"])) {
 
     echo "<script>cadastro.innerHTML='" . $controladorUsuario->cadastrarUsuario
             ($_POST["cadEmail"], $_POST["cadNome"], $_POST["cadSenha"]) . "';</script>";
-   $mapa->initMap();
+    $mapa->initMap();
 } else {
     $mapa->initMap();
 }

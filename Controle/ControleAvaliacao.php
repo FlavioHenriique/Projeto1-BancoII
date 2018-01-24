@@ -2,6 +2,10 @@
 
 
 class ControleAvaliacao{
+    
+   
+    
+    
 function avaliar($email, $nota, $comentario, $localidade) {
 
     require_once 'conexao.php';

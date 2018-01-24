@@ -23,8 +23,8 @@
                     <input type="hidden" name="email" id="email"><br>
                     <b><h2 class="avaliacao" id="titulo">Avaliação</h2></b>
                     <input type="number" name="nota" min="0" max="10"  id="nota" class="avaliacao"><br><br>
-                    <textarea type="text" rows=5 id="comentario" name="comentario" 
-                              maxlength=70 class="avaliacao"> </textarea><br><br>
+                    <textarea type="text" rows=7 id="comentario" name="comentario" 
+                              maxlength=140 class="avaliacao"> </textarea><br><br>
                     <input type="submit" value="Avaliar" id="botao">         
                 </form>
                 <a href="index.php"> Voltar</a>
@@ -50,7 +50,7 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     echo "<script> nome.innerHTML='" . $row['nome'] . "'; end.innerHTML='Endereço: "
     . "" . $row['rua'] . " <br>"
     . "" . $row['bairro'] . "- " . $row['cidade'] . "'; horario.innerHTML='Horário: "
-    . $row['inicio'] . "-" . $row['fim'] . "'</script> ";
+    . $row['inicio'] . " - " . $row['fim'] . "'</script> ";
     echo "<script> codigo.value='" . $row['codigo'] . "';</script>";
 
     echo "<style>#nome{color:#B22222;"
