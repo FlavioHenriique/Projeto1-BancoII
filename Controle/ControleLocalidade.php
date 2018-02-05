@@ -37,12 +37,14 @@ class ControleLocalidade {
 
     function salvarLocalidade( $localidade) {
         require_once 'conexao.php';
+        
         $con = getConnection();
         $sql = "INSERT INTO localidade(nome,rua,bairro,cidade,inicio,fim,latitude,"
                 . "longitude,usuario)"
                 . " VALUES('".$localidade->getNome()."','".$localidade->getRua()."','"
                 .$localidade->getBairro()."','".$localidade->getCidade()."','"
-                . "".$localidade->getEntrada()."','".$localidade->getSaida()."','".$localidade->getLatitude()."','"
+                . "".$localidade->getEntrada()."','".$localidade->getSaida()."','"
+                .$localidade->getLatitude()."','"
                  .$localidade->getLongitude()."','".$localidade->getUser()."')";
         pg_exec($con, $sql);
         echo "<script>alert('Localidade Cadastrada com sucesso!');"
@@ -55,11 +57,9 @@ class ControleLocalidade {
         $con = getConnection();
         $sql = "SELECT latitude,longitude FROM localidade WHERE nome ilike '$nome'";
         $result = pg_query($con, $sql);
-
         $row = pg_fetch_array($result);
         $lat = $row["latitude"];
         $lng = $row["longitude"];
-        
         
         $mapa->localizar($lat, $lng);
     }

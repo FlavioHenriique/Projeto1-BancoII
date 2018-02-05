@@ -10,7 +10,7 @@ session_start();
     <body>
         <table width="100%" height="100%" class="tabela"><tr bgcolor="#B22222" class="topo">
                 <td width="50%"><h1>Tela Inicial</h1>
-                    <b> <label id="nomeUsuario"></label></b>
+                    <b><label id="nomeUsuario"></label></b>
                 </td>
                 <td>
                     <div id="login"><form method="post" tex-align="right">

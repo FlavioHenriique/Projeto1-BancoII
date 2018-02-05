@@ -107,7 +107,6 @@ a{
     text-decoration: none;
 }
 
-
 a:hover{
     color:#FA8072;
 }
@@ -133,6 +132,7 @@ input.palavras {
 
 .topo{
     color:white;
+    font-family: Arial;
 }
 
 
@@ -140,3 +140,4 @@ hr{
     width: 98%;
     color: whitesmoke;  
 }
+

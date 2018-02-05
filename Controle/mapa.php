@@ -20,7 +20,7 @@ class mapa {
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
-          zoom: 14
+          zoom: 15
         });     
         var infoWindow = new google.maps.InfoWindow({map: map});
         if (navigator.geolocation) {
@@ -91,7 +91,7 @@ class mapa {
         function initMap() {
         var map = new google.maps.Map(document.getElementById('mapa'), {
           center: {lat: -34.397, lng: 150.644},
-          zoom: 14
+          zoom: 15
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
         if (navigator.geolocation) {

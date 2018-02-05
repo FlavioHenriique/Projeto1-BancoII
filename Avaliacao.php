@@ -7,8 +7,16 @@
         <link rel="stylesheet" href="Css/app.css">
     </head>
     <body>
+        <table width="100%" >
+            <tr bgcolor="#B22222" class="topo">
+                <td>
+                    <br>
+                    <h1>Avaliação de Localidade</h1>
+                </td>
+            </tr>
+        </table>
         <table width="100%">
-            <tr>
+            <tr  bgcolor="#F5F5F5">
                 <td>
                     <label id="nome"></label><br>
                     <label id="end"></label><br>
