@@ -11,9 +11,9 @@ class Localidade {
     private $rua;
     private $bairro;
     private $cidade;
+    private $codigo;
 
-    function __construct($latitude, $longitude, $nome, $entrada, $saida, $user, 
-            $rua, $bairro, $cidade) {
+    function __construct($latitude, $longitude, $nome, $entrada, $saida, $user, $rua, $bairro, $cidade) {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
         $this->nome = $nome;
@@ -79,6 +79,14 @@ class Localidade {
 
     function setSaida($saida) {
         $this->saida = $saida;
+    }
+
+    function getCodigo() {
+        return $this->codigo;
+    }
+
+    function setCodigo($codigo) {
+        $this->codigo = $codigo;
     }
 
     function setUser($user) {

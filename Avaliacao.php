@@ -1,5 +1,11 @@
-<?php 
-    session_start();
+<?php
+session_start();
+require_once 'Controle/ControleLocalidade.php';
+$controladorLocalidade = new ControleLocalidade();
+
+if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
+    $controladorLocalidade->getLocalidade($_POST["latMarker"], $_POST["lngMarker"]);
+}
 ?>
 <html>
     <head>
@@ -23,65 +29,52 @@
                     <label id="horario"></label>
                     <br><br>
                     <label id="media"></label>
+                    <br><br>
+
                 </td>
                 <td>
             <center>        
                 <form method="post" >
-                        <input type="hidden" id="codigo" name="codigo" ><br>
-                    <input type="hidden" name="email" id="email"><br>
+                    <input type="hidden" name="codigo" id="codigo">
                     <b><h2 class="avaliacao" id="titulo">Avaliação</h2></b>
                     <input type="number" name="nota" min="0" max="10"  id="nota" class="avaliacao"><br><br>
                     <textarea type="text" rows=7 id="comentario" name="comentario" 
                               maxlength=140 class="avaliacao"> </textarea><br><br>
                     <input type="submit" value="Avaliar" id="botao">         
                 </form>
-                <a href="index.php"> Voltar</a>
+
             </center>
         </td>
     </tr>
 </table>
-</body>
-</html>
+
 <?php
-require_once 'Controle/ControleLocalidade.php';
 require_once 'Controle/ControleAvaliacao.php';
 require_once 'Modelo/Usuario.php';
 
-$controladorLocalidade = new ControleLocalidade();
 $controladorAvaliacao = new ControleAvaliacao();
 
-if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
-    $result = $controladorLocalidade->paginaLocalidade($_POST["latMarker"], 
-            $_POST["lngMarker"]);
-    $row = pg_fetch_array($result);
-    
-    echo "<script> nome.innerHTML='" . $row['nome'] . "'; end.innerHTML='Endereço: "
-    . "" . $row['rua'] . " <br>"
-    . "" . $row['bairro'] . "- " . $row['cidade'] . "'; horario.innerHTML='Horário: "
-    . $row['inicio'] . " - " . $row['fim'] . "'</script> ";
-    echo "<script> codigo.value='" . $row['codigo'] . "';</script>";
 
-    echo "<style>#nome{color:#B22222;"
-    . "font-size:40px;} #end{font-size:30px;} #horario{font-size:30px;}</style>";
+$localidade = unserialize($_SESSION["localidade"]);
+$controladorLocalidade->paginaLocalidade($localidade);
 
-
-    echo "<script>media.innerHTML='Média das avaliações: " . 
-            $controladorAvaliacao->calculaMedia($row['codigo']) . "';</script>"
-            . "<style>#media{font-size:30px; }</style>";
-    $controladorAvaliacao->getComentarios($row["codigo"]);
-    echo "<head><title>".$row["nome"]."</title></head>";
-}
 
 if (isset($_SESSION["usuario"])) {
-    
+
     $obj = unserialize($_SESSION["usuario"]);
-    $controladorAvaliacao->verificarUsuario($obj->getEmail(),
-            $_POST["latMarker"],$_POST["lngMarker"]);
+    $controladorAvaliacao->verificarUsuario($obj->getEmail(), $localidade->getLatitude(),
+            $localidade->getLongitude());
 }
 
-if (isset($_POST["email"]) && isset($_POST["nota"]) && isset($_POST["comentario"])) {
-    
-    $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(), 
-            $_POST["nota"], $_POST["comentario"], 
-            $_POST["codigo"]);
+if (isset($_POST["nota"]) && isset($_POST["comentario"])) {
+
+    $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(),
+            $_POST["nota"], $_POST["comentario"], $_POST["codigo"]);
 }
+?>
+<center> 
+    <br>
+    <a href="index.php"><input type="submit" value="Voltar a página inicial"></a>
+</center>
+</body>
+</html>

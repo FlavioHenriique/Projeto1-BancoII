@@ -51,11 +51,11 @@ session_start();
                         </div> 
                         <br>
                         <input type="submit" value="Cadastrar">
-
-
                     </form>
+                    
 
-                        <a href="index.php">Voltar</a>
+                    <a href="index.php">
+                        <input type="submit" value="Voltar a página inicial"></a>
                 </td>
             </tr>
         </table>
@@ -74,16 +74,15 @@ require_once 'Modelo/Usuario.php';
 $controladorLocalidade = new ControleLocalidade();
 $mapa = new mapa();
 
-
-
 if (isset($_POST["latitude"]) && isset($_POST["longitude"]) &&
         isset($_POST["nome"]) && isset($_POST["entrada"]) && isset($_POST["saida"])) {
 
     $endereco = $controladorLocalidade->geocodificar($_POST["latitude"],
             $_POST["longitude"]);
+    
     if(array_key_exists("route", $endereco) && array_key_exists("sublocality_level_1", 
             $endereco) && array_key_exists("administrative_area_level_2", $endereco)){
-    
+     
     $localidade = new Localidade($_POST["latitude"], $_POST["longitude"],
             $_POST["nome"], $_POST["entrada"], $_POST["saida"], 
             unserialize($_SESSION["usuario"])->getEmail(), $endereco["route"], 

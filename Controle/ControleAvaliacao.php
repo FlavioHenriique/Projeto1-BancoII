@@ -1,13 +1,13 @@
 <?php   
 
 
-class ControleAvaliacao{
-    
-   
-    
+class ControleAvaliacao{ 
     
 function avaliar($email, $nota, $comentario, $localidade) {
-
+    
+    if($nota == ''){
+        echo "<script>alert('Determine uma nota para esta localidade!');</script>";
+    }else{
     require_once 'conexao.php';
     $con = getConnection();
     $query = "SELECT codigo FROM avaliacao WHERE emailusuario='$email' "
@@ -31,8 +31,7 @@ function avaliar($email, $nota, $comentario, $localidade) {
             . "VALUES (" . $row['codigo'] . ",'" . $comentario . "')";
     pg_exec($con, $insercao);
     header('Location: index.php');
-    
-    echo "<script>alert('Avaliação realizada!');</script>";
+    }
 }
 
 function getComentarios($codigo) {
@@ -49,7 +48,7 @@ function getComentarios($codigo) {
         echo "<b> &nbsp; &nbsp;".$row["nome"]."  </b><br> &nbsp; &nbsp;".$row["comentario"]."<hr>";
     }
     }else {
-        echo "Sem comentários para esta localidade!";
+        echo "<h2>Sem comentários para esta localidade!</h2>";
     }
 }
 

@@ -62,11 +62,10 @@ session_start();
                             </td>
                         </tr>
                     </table>
-                    <div id="map"></div><br><br>
+                    <div id="map"></div><br>
             <center>
-
-                <a href="Localidade.php"><button id="btCadastrar" >CADASTRAR LOCALIDADE</button></a>
-
+                <a href="Localidade.php"><input type="submit" id="btCadastrar" 
+                                                value="CADASTRAR LOCALIDADE"></a>
             </center>
         </td>
         <td>
@@ -80,7 +79,7 @@ session_start();
                            placeholder="Senha" maxlength="50"> <br><br>
                     <label id="cadastro"></label><br><br>
                     <input type="submit" value="Cadastrar">
-                </center>
+                </center>   
             </form>
         </td>
     </tr>
