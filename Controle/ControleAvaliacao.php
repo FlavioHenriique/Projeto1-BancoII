@@ -30,7 +30,9 @@ function avaliar($email, $nota, $comentario, $localidade) {
     $insercao = "INSERT INTO comentario_avaliacao(codigoavaliacao,comentario)"
             . "VALUES (" . $row['codigo'] . ",'" . $comentario . "')";
     pg_exec($con, $insercao);
-    header('Location: index.php');
+    
+    header("location: Avaliacao.php");
+    echo "<script>alert('Avaliação realizada!');</script>";
     }
 }
 

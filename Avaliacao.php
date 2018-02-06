@@ -54,21 +54,20 @@ require_once 'Modelo/Usuario.php';
 
 $controladorAvaliacao = new ControleAvaliacao();
 
-
+if(isset($_SESSION["localidade"])){
 $localidade = unserialize($_SESSION["localidade"]);
 $controladorLocalidade->paginaLocalidade($localidade);
-
+}
 
 if (isset($_SESSION["usuario"])) {
 
     $obj = unserialize($_SESSION["usuario"]);
-    $controladorAvaliacao->verificarUsuario($obj->getEmail(), $localidade->getLatitude(),
-            $localidade->getLongitude());
+    $controladorAvaliacao->verificarUsuario($obj->getEmail(), $localidade->getLatitude(), $localidade->getLongitude());
 }
 
 if (isset($_POST["nota"]) && isset($_POST["comentario"])) {
 
-    $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(),
+    $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(), 
             $_POST["nota"], $_POST["comentario"], $_POST["codigo"]);
 }
 ?>
