@@ -9,6 +9,7 @@ session_start();
         <link rel="stylesheet" href="Css/bootstrap.css">
         <link rel="stylesheet" href="Css/clockface.css">
         <link rel="stylesheet" href="Css/app.css">
+        <link rel="icon" href="Imagens/verde.png"  type="image/x-icon">
     </head>
     <body>
         <table width="100%" >

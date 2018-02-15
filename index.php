@@ -6,6 +6,7 @@ session_start();
         <meta charset="UTF-8">
         <title>Tela Inicial</title>
         <link rel="stylesheet" href="Css/app.css">
+        <link rel="icon" href="Imagens/verde.png"  type="image/x-icon">
     </head>
     <body>
         <table width="100%" height="100%" class="tabela"><tr bgcolor="#B22222" class="topo">

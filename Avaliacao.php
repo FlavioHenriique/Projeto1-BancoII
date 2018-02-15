@@ -11,6 +11,7 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="Css/app.css">
+        <link rel="icon" href="Imagens/verde.png"  type="image/x-icon">
     </head>
     <body>
         <table width="100%" >
