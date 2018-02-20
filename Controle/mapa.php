@@ -152,7 +152,6 @@ class mapa {
 
     function localizar($lat, $lng) {
 
-
         $con = getConnection();
         $busca = "SELECT * FROM localidade WHERE latitude='" . $lat . "'"
                 . " AND longitude = '" . $lng . "'";
@@ -209,8 +208,7 @@ document.avaliacao.submit();
 });
 ";
             }
-            echo "
-}
+            echo "}
 </script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCHoafMtF7Sv5XiUhhTpnqv82PaGuFM3u4&callback=initMap'
 async defer></script>";

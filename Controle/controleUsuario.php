@@ -17,10 +17,7 @@ class ControleUsuario {
         $result = pg_query($con, $sql);
         $row = pg_fetch_array($result);
         if ($row > 0) {
-            echo "<script>nomeUsuario.innerHTML='" . $row["nome"] . "';</script>"
-            . "<script>user.value='" . $email . "';"
-            . "userPass.value='" . $senha . "';"
-            . "avaliador.value='" . $email . "';</script>";
+            echo "<script>nomeUsuario.innerHTML='" . $row["nome"] . "';</script>";
             echo "<style>#btCadastrar{visibility: visible;}</style>";
            
             $usuario = new Usuario($row["nome"], $row["email"], $row["senha"]);

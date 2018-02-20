@@ -4,7 +4,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Tela Inicial</title>
+        <title>Projeto 1</title>
         <link rel="stylesheet" href="Css/app.css">
         <link rel="icon" href="Imagens/verde.png"  type="image/x-icon">
     </head>
@@ -54,7 +54,7 @@ session_start();
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td>    
                                 <form method="post" name="avaliacao" id="avaliacao"
                                       action="Avaliacao.php">
                                     <input type="hidden" name="latMarker" id="latMarker">
@@ -66,7 +66,7 @@ session_start();
                     <div id="map"></div><br>
             <center>
                 <a href="Localidade.php"><input type="submit" id="btCadastrar" 
-                                                value="CADASTRAR LOCALIDADE"></a>
+                                                value="Cadastrar Localidade"></a>
             </center>
         </td>
         <td>

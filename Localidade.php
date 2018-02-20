@@ -29,8 +29,8 @@ session_start();
                 <td width="7%"></td>
                 <td>
                     <form method="post" align="left">
-                        <input type="hidden" name="latitude" id="latitude"/>
-                        <input type="hidden" name="longitude" id="longitude"/><br>
+                        <input type="text" name="latitude" id="latitude"/>
+                        <input type="text" name="longitude" id="longitude"/><br>
                         <h2>Cadastro de localidade</h2>
                         <br>
                         <input type="text" name="nome" placeholder="Nome" maxlength="50" >
@@ -91,6 +91,7 @@ if (isset($_POST["latitude"]) && isset($_POST["longitude"]) &&
     $controladorLocalidade->salvarLocalidade($localidade);
     }
     else {
+        var_dump($endereco);
         echo "<script>alert('Selecione uma localidade válida no mapa!');</script>";
     }
 }
