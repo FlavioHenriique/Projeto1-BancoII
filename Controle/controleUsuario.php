@@ -18,7 +18,7 @@ class ControleUsuario {
         $row = pg_fetch_array($result);
         if ($row > 0) {
             echo "<script>nomeUsuario.innerHTML='" . $row["nome"] . "';</script>";
-            echo "<style>#btCadastrar{visibility: visible;}</style>";
+            echo "<style>#btCadastrar,#btLogout{visibility: visible;}</style>";
            
             $usuario = new Usuario($row["nome"], $row["email"], $row["senha"]);
             $_SESSION["usuario"]= serialize($usuario);

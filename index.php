@@ -11,7 +11,11 @@ session_start();
     <body>
         <table width="100%" height="100%" class="tabela"><tr bgcolor="#B22222" class="topo">
                 <td width="50%"><h1>Tela Inicial</h1>
+                    <form method="post">
                     <b><label id="nomeUsuario"></label></b>
+                    <input type="hidden" name="logout"> 
+                    <input type="submit" value="Sair" id="btLogout">
+                    </form>
                 </td>
                 <td>
                     <div id="login"><form method="post" tex-align="right">
@@ -23,7 +27,9 @@ session_start();
                                 <tr>
                                     <td><input type="text" name="email" maxlength="50"></td>
                                     <td><input type="password" name="senha" maxlength="50"></td>
-                                    <td> <input type="submit" value="Entrar"></td>
+                                    <td>
+                                        <input type="submit" value="Entrar">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -96,6 +102,11 @@ require_once 'Controle/ControleLocalidade.php';
 $controladorUsuario = new controleUsuario();
 $mapa = new mapa();
 $controladorLocalidade = new ControleLocalidade();
+
+if(isset($_POST["logout"])){
+
+    unset($_SESSION["usuario"]);
+}
 
 if (isset($_SESSION["usuario"])) {
     $obj = unserialize($_SESSION["usuario"]);

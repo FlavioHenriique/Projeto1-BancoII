@@ -34,9 +34,12 @@ class ControleAvaliacao {
     function salvaComentario($codigo, $comentario) {
         
          $con = getConnection();
+         
         $sql = "SELECT CodigoAvaliacao,comentario FROM comentario_avaliacao "
-                . "WHERE codigoavaliacao=" . $codigo . " AND comentario = '" . $comentario . "'";
+                . "WHERE codigoavaliacao=" . $codigo . " AND comentario = '"
+                . $comentario . "'";
         $result = pg_query($con, $sql);
+        
         if (pg_num_rows($result) == 0) {
             $insercao = "INSERT INTO comentario_avaliacao(codigoavaliacao,comentario)"
                     . "VALUES (" . $codigo . ",'" . $comentario . "')";
@@ -78,7 +81,7 @@ AND a.emailusuario='$email'";
         if (pg_num_rows($result) > 0) {
             $row = pg_fetch_array($result);
             echo "<style>#nota {visibility:visible;} #comentario {visibility:visible;}"
-            . "#botao {visibility:visible;}  #titulo{visibility: visible;}</style>"
+            . "#botao,#btRemover {visibility:visible;}  #titulo{visibility: visible;}</style>"
             . "<script>nota.value=" . $row['nota'] . ";"
             . "titulo.innerHTML='Editar avaliação';</script>";
         } else {

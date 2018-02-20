@@ -43,7 +43,7 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
                               maxlength=140 class="avaliacao"> </textarea><br><br>
                     <div>
                         <input type="submit" value="Avaliar" id="botao">
-                        <input type="submit" value="Remover avaliação">
+                        <input type="submit" value="Remover avaliação" id="btRemover">
                     </div>         
                 </form>
 

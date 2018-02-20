@@ -40,7 +40,7 @@ html, body {
     color: white;
 }
 
-#btCadastrar{
+#btCadastrar,#btLogout,#btRemover{
     visibility : hidden;
 }
 
