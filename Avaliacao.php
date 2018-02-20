@@ -41,7 +41,10 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
                     <input type="number" name="nota" min="0" max="10"  id="nota" class="avaliacao"><br><br>
                     <textarea type="text" rows=7 id="comentario" name="comentario" 
                               maxlength=140 class="avaliacao"> </textarea><br><br>
-                    <input type="submit" value="Avaliar" id="botao">         
+                    <div>
+                        <input type="submit" value="Avaliar" id="botao">
+                        <input type="submit" value="Remover avaliação">
+                    </div>         
                 </form>
 
             </center>
@@ -55,9 +58,9 @@ require_once 'Modelo/Usuario.php';
 
 $controladorAvaliacao = new ControleAvaliacao();
 
-if(isset($_SESSION["localidade"])){
-$localidade = unserialize($_SESSION["localidade"]);
-$controladorLocalidade->paginaLocalidade($localidade);
+if (isset($_SESSION["localidade"])) {
+    $localidade = unserialize($_SESSION["localidade"]);
+    $controladorLocalidade->paginaLocalidade($localidade);
 }
 
 if (isset($_SESSION["usuario"])) {
@@ -68,13 +71,12 @@ if (isset($_SESSION["usuario"])) {
 
 if (isset($_POST["nota"]) && isset($_POST["comentario"])) {
 
-    $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(), 
-            $_POST["nota"], $_POST["comentario"], $_POST["codigo"]);
+    $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(), $_POST["nota"], $_POST["comentario"], $_POST["codigo"]);
 }
 ?>
 <center> 
     <br>
-    <a href="index.php"><input type="submit" value="Voltar a página inicial"></a>
+    <a href="index.php"><input type="submit" value="Voltar a página inicial"></a><br>
 </center>
 </body>
 </html>
