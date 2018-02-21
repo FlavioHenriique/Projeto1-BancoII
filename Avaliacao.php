@@ -6,6 +6,17 @@ $controladorLocalidade = new ControleLocalidade();
 if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
     $controladorLocalidade->getLocalidade($_POST["latMarker"], $_POST["lngMarker"]);
 }
+
+function get_post_action($name)
+{
+    $params = func_get_args();
+
+    foreach ($params as $name) {
+        if (isset($_POST[$name])) {
+            return $name;
+        }
+    }
+}
 ?>
 <html>
     <head>
@@ -37,13 +48,14 @@ if (isset($_POST["latMarker"]) && $_POST["lngMarker"]) {
             <center>        
                 <form method="post" >
                     <input type="hidden" name="codigo" id="codigo">
+                    <input type="hidden" name="codAvaliacao" id="codAvaliacao">
                     <b><h2 class="avaliacao" id="titulo">Avaliação</h2></b>
                     <input type="number" name="nota" min="0" max="10"  id="nota" class="avaliacao"><br><br>
                     <textarea type="text" rows=7 id="comentario" name="comentario" 
                               maxlength=140 class="avaliacao"> </textarea><br><br>
                     <div>
-                        <input type="submit" value="Avaliar" id="botao">
-                        <input type="submit" value="Remover avaliação" id="btRemover">
+                        <input type="submit" value="Avaliar" id="botao" name="btAvaliar">
+                        <input type="submit" value="Remover avaliação" id="btRemover" name="btRemover">
                     </div>         
                 </form>
 
@@ -66,12 +78,25 @@ if (isset($_SESSION["localidade"])) {
 if (isset($_SESSION["usuario"])) {
 
     $obj = unserialize($_SESSION["usuario"]);
-    $controladorAvaliacao->verificarUsuario($obj->getEmail(), $localidade->getLatitude(), $localidade->getLongitude());
+    $controladorAvaliacao->verificarUsuario($obj->getEmail(), $localidade->getLatitude(),
+            $localidade->getLongitude());
 }
 
-if (isset($_POST["nota"]) && isset($_POST["comentario"])) {
+switch (get_post_action('btRemover', 'btAvaliar')) {
+    case 'btRemover': {
 
-    $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(), $_POST["nota"], $_POST["comentario"], $_POST["codigo"]);
+            $controladorAvaliacao->removeAvaliacao($_POST["codAvaliacao"]);
+            break;
+        }
+    case 'btAvaliar': {
+
+            if (isset($_POST["nota"]) && isset($_POST["comentario"])) {
+
+                $controladorAvaliacao->avaliar(unserialize($_SESSION["usuario"])->getEmail(),
+                        $_POST["nota"], $_POST["comentario"], $_POST["codigo"]);
+            }
+            break;
+        }
 }
 ?>
 <center> 

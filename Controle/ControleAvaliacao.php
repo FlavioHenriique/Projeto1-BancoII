@@ -69,7 +69,7 @@ class ControleAvaliacao {
     function verificarUsuario($email, $latitude, $longitude) {
         require_once 'conexao.php';
         $con = getConnection();
-        $sql = "SELECT a.nota
+        $sql = "SELECT a.nota, a.codigo
 FROM avaliacao a, comentario_avaliacao ca, localidade l
 WHERE a.codigo=ca.codigoavaliacao
 AND l.codigo=a.codigolocalidade
@@ -83,7 +83,7 @@ AND a.emailusuario='$email'";
             echo "<style>#nota {visibility:visible;} #comentario {visibility:visible;}"
             . "#botao,#btRemover {visibility:visible;}  #titulo{visibility: visible;}</style>"
             . "<script>nota.value=" . $row['nota'] . ";"
-            . "titulo.innerHTML='Editar avaliação';</script>";
+            . "titulo.innerHTML='Editar avaliação'; codAvaliacao.value=".$row['codigo']."</script>";
         } else {
             echo "<style>#nota {visibility:visible;} #comentario {visibility:visible;}"
             . "#botao {visibility:visible;} #titulo{visibility: visible;}</style>";
@@ -105,5 +105,20 @@ AND a.emailusuario='$email'";
             return 0;
         }
     }
-
+    
+    function removeAvaliacao($codigo){
+        
+        $con = getConnection();
+        $sql = "DELETE FROM AVALIACAO WHERE Codigo = ".$codigo;
+        $this->removeComentarios($codigo);
+        pg_exec($con, $sql);
+        header("Location: Avaliacao.php");
+    }
+    
+    function removeComentarios($codigo){
+    
+        $con = getConnection();
+        $sql = "DELETE FROM Comentario_Avaliacao WHERE CodigoAvaliacao= ".$codigo;
+        pg_exec($con, $sql);
+}
 }
