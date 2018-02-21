@@ -5,7 +5,7 @@ session_start();
 
     <head>
         <meta charset="UTF-8">
-        <title>Cadastrar localidade</title>
+        <title>Cadastrar Restaurante</title>
         <link rel="stylesheet" href="Css/bootstrap.css">
         <link rel="stylesheet" href="Css/clockface.css">
         <link rel="stylesheet" href="Css/app.css">
@@ -15,7 +15,7 @@ session_start();
         <table width="100%" >
             <tr bgcolor="#B22222" class="topo">
                 <td><br>
-                    <h1>Cadastro de localidade</h1>
+                    <h1>Cadastro de Restaurante</h1>
                     <br>
                 </td>
             </tr>
@@ -29,9 +29,9 @@ session_start();
                 <td width="7%"></td>
                 <td>
                     <form method="post" align="left">
-                        <input type="text" name="latitude" id="latitude"/>
-                        <input type="text" name="longitude" id="longitude"/><br>
-                        <h2>Cadastro de localidade</h2>
+                        <input type="hidden" name="latitude" id="latitude"/>
+                        <input type="hidden" name="longitude" id="longitude"/><br>
+                        <h2>Cadastro de Restaurante</h2>
                         <br>
                         <input type="text" name="nome" placeholder="Nome" maxlength="50" >
                         <br><br>

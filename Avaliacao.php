@@ -29,7 +29,7 @@ function get_post_action($name)
             <tr bgcolor="#B22222" class="topo">
                 <td>
                     <br>
-                    <h1>Avaliação de Localidade</h1>
+                    <h1>Avaliação de Restaurante</h1>
                 </td>
             </tr>
         </table>

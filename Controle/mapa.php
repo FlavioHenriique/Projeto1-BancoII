@@ -157,7 +157,7 @@ class mapa {
                 . " AND longitude = '" . $lng . "'";
         $resultado = pg_query($con, $busca);
         if (pg_num_rows($resultado) == 0) {
-            echo "<script>alert('Localidade não encontrada!');</script>";
+            echo "<script>alert('Restaurante não encontrado!');</script>";
             $this->initMap();
         } else {
             $sql = "SELECT latitude,longitude,nome,codigo FROM localidade";

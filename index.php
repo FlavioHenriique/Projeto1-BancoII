@@ -47,7 +47,7 @@ session_start();
                             <td>
                                 <form method="post">
                                     <input type="text" name="buscaNome" 
-                                           placeholder="Nome da localidade">
+                                           placeholder="Nome do restaurante">
                                     <input type="submit" value="Buscar">
                                 </form>
                             </td>
@@ -72,7 +72,7 @@ session_start();
                     <div id="map"></div><br>
             <center>
                 <a href="Localidade.php"><input type="submit" id="btCadastrar" 
-                                                value="Cadastrar Localidade"></a>
+                                                value="Cadastrar Restaurante"></a>
             </center>
         </td>
         <td>

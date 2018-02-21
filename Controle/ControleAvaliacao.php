@@ -5,7 +5,7 @@ class ControleAvaliacao {
     function avaliar($email, $nota, $comentario, $localidade) {
 
         if ($nota == '') {
-            echo "<script>alert('Determine uma nota para esta localidade!');</script>";
+            echo "<script>alert('Determine uma nota para este restaurante!');</script>";
         } else {
             require_once 'conexao.php';
             $con = getConnection();
@@ -62,7 +62,7 @@ class ControleAvaliacao {
                 echo "<b> &nbsp; &nbsp;" . $row["nome"] . "  </b><br> &nbsp; &nbsp;" . $row["comentario"] . "<hr>";
             }
         } else {
-            echo "<h2>Sem comentários para esta localidade!</h2>";
+            echo "<h2>Sem comentários para este restaurante!</h2>";
         }
     }
 

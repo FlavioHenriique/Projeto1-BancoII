@@ -7,7 +7,8 @@ require_once 'conexao.php';
 class ControleLocalidade {
 
     function geocodificar($lat, $long) {
-        $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng={$lat},{$long}&sensor=false";
+        $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng={$lat},"
+        . "{$long}&sensor=false";
         $content = @file_get_contents($url);
         $localizacao = array();
 
@@ -46,7 +47,7 @@ class ControleLocalidade {
                 . $localidade->getLatitude() . "','"
                 . $localidade->getLongitude() . "','" . $localidade->getUser() . "')";
         pg_exec($con, $sql);
-        echo "<script>alert('Localidade Cadastrada com sucesso!');"
+        echo "<script>alert('Restaurante cadastrado com sucesso!');"
         . "</script>";
     }
 
@@ -101,7 +102,7 @@ class ControleLocalidade {
         . "<style>#media{font-size:30px; }</style>";
         $controladorAvaliacao->getComentarios($localidade->getCodigo());
 
-        echo "<head><title>Avaliação de Localidade - " . $localidade->getNome() . "</title></head>";   
+        echo "<head><title>Avaliação de Restaurante - " . $localidade->getNome() . "</title></head>";   
     }
     
     function getLocalidade($lat, $lng){
